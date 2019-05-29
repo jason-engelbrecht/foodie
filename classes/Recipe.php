@@ -9,7 +9,7 @@
 /**
  * Class representing a recipe
  *
- * This class represents a basic recipe(abstract).
+ * This class represents a basic recipe(abstract)
  * @author Jason Engelbrecht & Alvin Nava
  * @copyright 2019
  */
