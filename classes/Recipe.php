@@ -20,19 +20,19 @@ class Recipe
     private $_ingredients;
     private $_instructions;
     private $_time;
-    //private $_measure; children
     private $_image;
     private $_dateCreated;
     private $_category;
 
     /**
-     * Recipe constructor.
-     * @param $_title
-     * @param $_description
-     * @param $_time
-     * @param $_image
-     * @param $_dateCreated
-     * @param $_category
+     * Recipe constructor
+     * @param $_title - title of recipe
+     * @param $_description - description of recipe
+     * @param $_time - time recipe takes to make
+     * @param $_image - image of recipe
+     * @param $_dateCreated - date recipe was created
+     * @param $_category - category of recipe
+     * @return void
      */
     public function __construct($_title, $_description, $_time, $_image, $_dateCreated, $_category)
     {
@@ -45,7 +45,8 @@ class Recipe
     }
 
     /**
-     * @return mixed
+     * Get recipe title
+     * @return string
      */
     public function getTitle()
     {
@@ -53,7 +54,8 @@ class Recipe
     }
 
     /**
-     * @param mixed $title
+     * Set recipe title
+     * @param string - recipe title
      */
     public function setTitle($title)
     {
@@ -61,7 +63,8 @@ class Recipe
     }
 
     /**
-     * @return mixed
+     * Get recipe description
+     * @return string
      */
     public function getDescription()
     {
@@ -69,7 +72,8 @@ class Recipe
     }
 
     /**
-     * @param mixed $description
+     * Set recipe description
+     * @param string - recipe description
      */
     public function setDescription($description)
     {
@@ -77,7 +81,8 @@ class Recipe
     }
 
     /**
-     * @return mixed
+     * Get recipe ingredients
+     * @return array
      */
     public function getIngredients()
     {
@@ -85,7 +90,8 @@ class Recipe
     }
 
     /**
-     * @param mixed $ingredients
+     * Set recipe ingredients
+     * @param array - recipe ingredients
      */
     public function setIngredients($ingredients)
     {
@@ -93,7 +99,8 @@ class Recipe
     }
 
     /**
-     * @return mixed
+     * Get recipe instructions
+     * @return array
      */
     public function getInstructions()
     {
@@ -101,7 +108,8 @@ class Recipe
     }
 
     /**
-     * @param mixed $instructions
+     * Set recipe instructions
+     * @param array - recipe instructions
      */
     public function setInstructions($instructions)
     {
@@ -109,7 +117,8 @@ class Recipe
     }
 
     /**
-     * @return mixed
+     * Get recipe time to make
+     * @return string
      */
     public function getTime()
     {
@@ -117,7 +126,8 @@ class Recipe
     }
 
     /**
-     * @param mixed $time
+     * Set time to make recipe
+     * @param string - time to make recipe
      */
     public function setTime($time)
     {
@@ -125,7 +135,8 @@ class Recipe
     }
 
     /**
-     * @return mixed
+     * Get recipe image
+     * @return string
      */
     public function getImage()
     {
@@ -133,7 +144,8 @@ class Recipe
     }
 
     /**
-     * @param mixed $image
+     * Set recipe image
+     * @param string - recipe image
      */
     public function setImage($image)
     {
@@ -141,6 +153,7 @@ class Recipe
     }
 
     /**
+     * Get recipe creation date
      * @return mixed
      */
     public function getDateCreated()
@@ -149,7 +162,8 @@ class Recipe
     }
 
     /**
-     * @param mixed $dateCreated
+     * Set recipe creation date
+     * @param mixed - recipe creation date
      */
     public function setDateCreated($dateCreated)
     {
@@ -157,7 +171,8 @@ class Recipe
     }
 
     /**
-     * @return mixed
+     * Get recipe category
+     * @return string
      */
     public function getCategory()
     {
@@ -165,14 +180,11 @@ class Recipe
     }
 
     /**
-     * @param mixed $category
+     * Set recipe category
+     * @param string - recipe category
      */
     public function setCategory($category)
     {
         $this->_category = $category;
     }
-
-
-
-
 }
