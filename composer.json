@@ -1,0 +1,15 @@
+{
+  "name": "jengelbr/it328/foodie",
+  "authors": [
+    {
+      "name": "Jason Engelbrecht",
+      "email": "jengelbrecht2@mail.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  },
+  "autoload": {
+    "classmap": ["classes/", "model/database/"]
+  }
+}

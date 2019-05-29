@@ -1,0 +1,47 @@
+/* form highlight */
+.form-control:focus, .custom-select:focus {
+    border: 0.5px solid #ffa726;
+    box-shadow: 0 0 5px #ffa726;
+}
+
+option:focus {
+    background-color: #ffa726;
+}
+
+/* category highlight */
+.deep-orange-lighter-hover {
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+.deep-orange-lighter-hover:hover {
+    -webkit-transition: .4s;
+    transition: .4s;
+    color: #ff7043;
+}
+
+/* darken element on hover w transition */
+.darken-hover {
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+.darken-hover:hover {
+    -webkit-transition: .4s;
+    transition: .4s;
+    filter: brightness(90%);
+    opacity: 0.9;
+}
+
+/* strike through */
+.strike {
+    text-decoration: line-through !important;
+}
+
+/* dynamic display */
+.hideme {
+    opacity:0;
+}
+
+.card-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+}

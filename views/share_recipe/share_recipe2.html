@@ -1,0 +1,88 @@
+<include href="views/includes/header.html"/>
+<!-- container -->
+<div class="container pt-3">
+    <!-- Jumbotron header -->
+    <div class="card card-image" style="background-image: url(images/orange.jpg); background-size: cover; background-repeat: no-repeat;">
+        <div class="text-white text-center rgba-grey-strong py-5 px-4">
+            <div class="py-2">
+
+                <!-- Content -->
+                <h1 class="card-title h1 display-3 my-4 py-2">Share your recipe!</h1>
+                <h3 class="orange-text h3 font-weight-bold text-center">Tell us a little about it <i class="far fa-hand-point-down"></i></h3>
+
+            </div>
+        </div>
+    </div>
+    <!-- Jumbotron header-->
+
+    <!-- Jumbotron form -->
+    <div class="jumbotron p-md-5 grey lighten-5">
+        <h6 class="h6 pb-1 text-center">Please fill out all fields below</h6>
+
+        <!-- form grid -->
+        <form class="m-5">
+
+            <!-- row -->
+            <div class="row">
+                <!-- column -->
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <label for="ingredients">What ingredients does it contain?</label>
+                        <textarea id="ingredients" class="form-control" rows="10" placeholder="1 ingredient per line"></textarea>
+                        <small>Include measurements and/or amounts</small>
+                    </div>
+                </div>
+                <!-- column -->
+            </div>
+            <!-- row -->
+
+            <hr class="my-5">
+
+            <!-- row -->
+            <div class="row">
+                <!-- column -->
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <label for="directions">What are the steps to make it?</label>
+                        <textarea id="directions" class="form-control" rows="10" placeholder="1 instruction per line"></textarea>
+                        <small>Give numbered instructions for clarity</small>
+                    </div>
+                </div>
+                <!-- column -->
+            </div>
+            <!-- row -->
+
+            <hr class="my-5">
+
+            <!-- row -->
+            <div class="row">
+                <!-- column -->
+                <div class="col-md-5">
+                    <p>Is it measured in metric or standard?</p>
+
+                    <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="metric" name="measure">
+                        <label class="custom-control-label" for="metric">Metric</label>
+                    </div>
+
+                    <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="standard" name="measure">
+                        <label class="custom-control-label" for="standard">Standard</label>
+                    </div>
+                </div>
+                <!-- column -->
+            </div>
+            <!-- row -->
+
+            <!-- submit/back -->
+            <div class="pt-5 text-center">
+                <a class="btn btn-outline-orange waves-effect" href="/it328/foodie/share">Back <i class="fas fa-undo-alt mt-1 pl-1"></i></a>
+                <button type="button" class="btn peach-gradient text-white">Share <i class="fas fa-share-alt pl-1"></i></button>
+            </div>
+        </form>
+        <!-- form grid -->
+    </div>
+    <!-- Jumbotron form-->
+</div>
+<!-- container -->
+<include href="views/includes/footer.html"/>
