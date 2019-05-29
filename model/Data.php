@@ -37,6 +37,8 @@
  VALUES('Miscellaneous');
  */
 
+require '../../config.php';
+
 class Data
 {
 
