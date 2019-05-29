@@ -41,5 +41,31 @@ require '../../config.php';
 
 class Data
 {
+    private $_db;
+
+    /**
+     * Database constructor
+     * @return void
+     */
+    function __construct()
+    {
+        $this->connect();
+    }
+
+    /**
+     * Connect to database
+     * @return PDO
+     */
+    function connect()
+    {
+        try {
+            //Instantiate a db object
+            $this->_db = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
+            return $this->_db;
+        }
+        catch(PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 
 }
