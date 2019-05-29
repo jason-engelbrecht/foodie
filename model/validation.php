@@ -1,9 +1,9 @@
 <?php
 /*
-Jason Engelbrecht
-4.8.2019
-https://jengelbrecht.greenriverdev.com/it328/cupcakes
-Cupcake ordering page.
+Jason Engelbrecht & Alvin Nava
+5.29.2019
+https://jengelbrecht.greenriverdev.com/it328/foodie
+Food blog website form validation
 */
 /**
  * Created by PhpStorm.
@@ -11,3 +11,4 @@ Cupcake ordering page.
  * Date: 5/28/2019
  * Time: 10:08 PM
  */
+
