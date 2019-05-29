@@ -58,5 +58,14 @@ $f3->route('GET /recipe', function($f3) {
     echo $view->render('views/recipe.html');
 });
 
+// Define a contact us route
+$f3->route('GET /contact', function($f3){
+   $f3->set('page_title', 'Contact Us');
+
+   // display a view
+    $view = new Template();
+    echo $view->render('views/contact.html');
+});
+
 //run fat-free
 $f3->run();
