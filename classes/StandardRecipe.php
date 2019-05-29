@@ -25,4 +25,19 @@ class StandardRecipe extends Recipe
         $this->_measure = 'Standard';
     }
 
+    /**
+     * @return string
+     */
+    public function getMeasure()
+    {
+        return $this->_measure;
+    }
+
+    /**
+     * @param string $measure
+     */
+    public function setMeasure($measure)
+    {
+        $this->_measure = $measure;
+    }
 }
