@@ -67,5 +67,14 @@ $f3->route('GET /contact', function($f3){
     echo $view->render('views/contact.html');
 });
 
+// Define a test route
+$f3->route('GET /test', function($f3){
+    $f3->set('page_title', 'Test');
+
+    // display a view
+    $view = new Template();
+    echo $view->render('views/test.html');
+});
+
 //run fat-free
 $f3->run();
