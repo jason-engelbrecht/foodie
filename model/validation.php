@@ -12,7 +12,7 @@ Food blog website form validation
  * Time: 4:00 PM
  */
 
-function validForm($input)
+function validate($input)
 {
-    return (!empty($input));
+    return !empty($input);
 }

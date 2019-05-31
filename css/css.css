@@ -45,3 +45,7 @@ option:focus {
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+.dropdown-toggle[aria-expanded="true"] {
+    background:#ffa726 !important;
+}
