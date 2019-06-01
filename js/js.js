@@ -23,3 +23,6 @@ $(document).ready(function() {
         $(this).find('i').toggleClass('fa-check-square fa-square')
     });
 });
+
+//initialize scroll animations
+new WOW().init();
