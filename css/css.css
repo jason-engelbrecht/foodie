@@ -27,7 +27,7 @@ option:focus {
 .darken-hover:hover {
     -webkit-transition: .4s;
     transition: .4s;
-    filter: brightness(90%);
+    filter: brightness(95%);
     opacity: 0.9;
 }
 
