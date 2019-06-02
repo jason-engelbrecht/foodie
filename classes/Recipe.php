@@ -21,7 +21,6 @@ class Recipe
     private $_instructions;
     private $_time;
     private $_image;
-    private $_dateCreated;
     private $_category;
 
     /**
@@ -34,13 +33,12 @@ class Recipe
      * @param $_category - category of recipe
      * @return void
      */
-    public function __construct($_title, $_description, $_time, $_image, $_dateCreated, $_category)
+    public function __construct($_title, $_description, $_time, $_image, $_category)
     {
         $this->_title = $_title;
         $this->_description = $_description;
         $this->_time = $_time;
         $this->_image = $_image;
-        $this->_dateCreated = $_dateCreated;
         $this->_category = $_category;
     }
 
@@ -82,7 +80,7 @@ class Recipe
 
     /**
      * Get recipe ingredients
-     * @return array
+     * @return string
      */
     public function getIngredients()
     {
@@ -91,7 +89,7 @@ class Recipe
 
     /**
      * Set recipe ingredients
-     * @param array - recipe ingredients
+     * @param string - recipe ingredients
      */
     public function setIngredients($ingredients)
     {
@@ -100,7 +98,7 @@ class Recipe
 
     /**
      * Get recipe instructions
-     * @return array
+     * @return string
      */
     public function getInstructions()
     {
@@ -109,7 +107,7 @@ class Recipe
 
     /**
      * Set recipe instructions
-     * @param array - recipe instructions
+     * @param string - recipe instructions
      */
     public function setInstructions($instructions)
     {
@@ -150,24 +148,6 @@ class Recipe
     public function setImage($image)
     {
         $this->_image = $image;
-    }
-
-    /**
-     * Get recipe creation date
-     * @return mixed
-     */
-    public function getDateCreated()
-    {
-        return $this->_dateCreated;
-    }
-
-    /**
-     * Set recipe creation date
-     * @param mixed - recipe creation date
-     */
-    public function setDateCreated($dateCreated)
-    {
-        $this->_dateCreated = $dateCreated;
     }
 
     /**

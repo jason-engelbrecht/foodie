@@ -68,4 +68,31 @@ class Data
         }
     }
 
+    function insertRecipe($title, $description, $ingredients, $instructions,
+                          $time, $measure, $image, $category)
+    {
+        //define query
+        $query = 'INSERT INTO recipe
+                  (title, description, ingredients, instructions, 
+                  time, measure, image, date_created, category)
+                  VALUES
+                  (:title, :description, :ingredients, :instructions, 
+                  :time, :measure, :image, NOW(), :category)';
+
+        //prepare statement
+        $statement = $this->_db->prepare($query);
+
+        //bind parameters
+        $statement->bindParam(':title', $title, PDO::PARAM_STR);
+        $statement->bindParam(':description', $description, PDO::PARAM_STR);
+        $statement->bindParam(':ingredients', $ingredients, PDO::PARAM_STR);
+        $statement->bindParam(':instructions', $instructions, PDO::PARAM_STR);
+        $statement->bindParam(':time', $time, PDO::PARAM_STR);
+        $statement->bindParam(':measure', $measure, PDO::PARAM_STR);
+        $statement->bindParam(':image', $image, PDO::PARAM_STR);
+        $statement->bindParam(':category', $category, PDO::PARAM_STR);
+
+        //execute statement
+        $statement->execute();
+    }
 }

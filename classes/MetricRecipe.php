@@ -27,9 +27,9 @@ class MetricRecipe extends Recipe
      * @param $_category - category of recipe
      * @return void
      */
-    public function __construct($_title, $_description, $_time, $_image, $_dateCreated, $_category)
+    public function __construct($_title, $_description, $_time, $_image, $_category)
     {
-        parent::__construct($_title, $_description, $_time, $_image, $_dateCreated, $_category);
+        parent::__construct($_title, $_description, $_time, $_image, $_category);
         $this->_measure = 'Metric';
     }
 

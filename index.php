@@ -104,12 +104,12 @@ $f3->route('GET|POST /share', function($f3) {
             if(MEASURE == 'Metric') {
                 //metric
                 $_SESSION['recipe'] = new MetricRecipe(TITLE, DESCRIPTION,
-                    TIME, 'none', time(), CATEGORY);
+                    TIME, 'none', CATEGORY);
             }
             else {
                 //standard
                 $_SESSION['recipe'] = new StandardRecipe(TITLE, DESCRIPTION,
-                    TIME, 'none', time(), CATEGORY);
+                    TIME, 'none', CATEGORY);
             }
             $f3->reroute('/post'); //next form
         }
@@ -122,7 +122,6 @@ $f3->route('GET|POST /share', function($f3) {
 //define share recipe route - post
 $f3->route('GET|POST /post', function($f3) {
     $f3->set('page_title', 'Post');
-
     if(isset($_POST['submit'])) {
         //get post data
         $ingredients = trim($_POST['ingredients']);
@@ -149,14 +148,20 @@ $f3->route('GET|POST /post', function($f3) {
         }
 
         if (defined('INGREDIENTS') && defined('INSTRUCTIONS')) {
-
             //get recipe and assign new fields
             $recipe = $_SESSION['recipe'];
-            /*$recipe->setIngredients('INGREDIENTS');
-            $recipe->setInstructions('INSTRUCTIONS');*/
+            $recipe->setIngredients(INGREDIENTS);
+            $recipe->setInstructions(INSTRUCTIONS);
             $_SESSION['recipe'] = $recipe;
 
-            //TODO enter info into database
+            //get global db object and category's numerical value
+            global $db;
+            $category_value = array_search($recipe->getCategory(), $f3->get('categories')) + 1;
+
+            //insert recipe into database
+            $db->insertRecipe($recipe->getTitle(), $recipe->getDescription(),
+                $recipe->getIngredients(), $recipe->getInstructions(), $recipe->getTime(),
+                $recipe->getMeasure(), 'none', $category_value);
 
             $f3->reroute('/recipe'); //view recipe
         }
@@ -166,23 +171,29 @@ $f3->route('GET|POST /post', function($f3) {
     echo $view->render('views/share_recipe/share_recipe2.html');
 });
 
+// Define a contact us route
+$f3->route('GET /contact', function($f3){
+    $f3->set('page_title', 'Contact Us');
+
+    // display a view
+    $view = new Template();
+    echo $view->render('views/contact.html');
+});
+
+//TODO define a route for viewing each recipe
+//TODO define a discover recipe route
+//TODO define select queries for displaying recipes
+//TODO one for main cards, side cards, and display pages
+
 //define recipe route
 ////////////temporary////////////////
 $f3->route('GET /recipe', function($f3) {
+
     $f3->set('page_title', 'Home');
 
     //display a view
     $view = new Template();
     echo $view->render('views/recipe.html');
-});
-
-// Define a contact us route
-$f3->route('GET /contact', function($f3){
-   $f3->set('page_title', 'Contact Us');
-
-   // display a view
-    $view = new Template();
-    echo $view->render('views/contact.html');
 });
 
 // Define a test route
