@@ -1,4 +1,71 @@
-<include href="views/includes/header.html"/>
+<!--
+Jason Engelbrecht
+Date
+URL
+Description
+-->
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.2/css/mdb.min.css" rel="stylesheet">
+    <!-- Custom styles -->
+    <link rel="stylesheet" type="text/css" href="../css/css.css" >
+    <!-- Favicon -->
+    <link rel="icon" href="../images/utensils.png">
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <title>{{ @page_title }}</title>
+</head>
+<body class="orange lighten-5">
+
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark orange lighten-1 fixed-top scrolling-navbar">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand pl-lg-5 darken-hover" href="../"><i class="fas fa-utensils"></i> Foodie</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+            aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+
+        <!-- Links -->
+        <ul class="navbar-nav ml-auto pr-5">
+            <li class="nav-item">
+                <a class="nav-link" href="../">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../share">Share</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../discover">Discover</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="../contact"><i class="fas fa-question-circle"></i></a>
+            </li>
+        </ul>
+        <!-- Links -->
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+<!-- Navbar -->
 <!-- Page Content -->
 <div class="container pt-5 mt-5 content">
     <div class="row">
@@ -6,47 +73,42 @@
         <!-- Post Content Column -->
         <div class="col-lg-7">
             <a href="#" class="orange-text">
-                <h5 class="h5-responsive pl-1 pb-1 deep-orange-lighter-hover animated fadeInRightBig slower"><i class="fas fa-utensils"></i> Healthy</h5>
+                <h5 class="h5-responsive pl-1 pb-1 deep-orange-lighter-hover animated fadeInRightBig slower">
+                    <i class="fas fa-utensils"></i> {{ @categories[(int)@recipe['category']] }}</h5>
             </a>
             <!-- Title -->
-            <h1 class="h1-responsive animated fadeInRightBig slow">Title of recipe</h1>
+            <h1 class="h1-responsive animated fadeInRightBig slow">{{ @recipe['title'] }}</h1>
 
             <hr>
 
             <!-- Date -->
-            <h6 class="pl-1 h6-responsive">Posted on January 1, 2019</h6>
+            <h6 class="pl-1 h6-responsive">Posted on {{ date('F j, Y', strtotime(@recipe['date_created'])) }}</h6>
 
             <!-- Preview Image -->
-            <img class="img-fluid rounded z-depth-1 my-3" src="images/cereal.jpg" alt="">
+            <img class="img-fluid rounded z-depth-1 my-3" src="../images/cereal.jpg" alt="">
 
             <!-- Post Content -->
-            <h4 class="h4-responsive py-3"><i class="far fa-clock"></i> 1 hr 30 min</h4>
+            <h4 class="h4-responsive py-3"><i class="far fa-clock"></i> {{ @recipe['time'] }}</h4>
 
             <!-- Description -->
-            <h5 class="py-3 h5-responsive">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</h5>
+            <h5 class="py-3 h5-responsive">{{ @recipe['description'] }}</h5>
             <hr>
 
             <!-- Ingredients -->
             <h2 class="py-3 h2-responsive"><i class="fas fa-tasks orange-text"></i> Ingredients</h2>
             <div class="pl-3 pb-4">
-                <p class="hideme"><a class="check"><i class="far fa-square fa-sm"></i> Lorem ipsum dolor sit amet, consectetur</a></p>
-                <p class="hideme"><a class="check"><i class="far fa-square fa-sm"></i> Lorem ipsum dolor sit amet, consectetur</a></p>
-                <p class="hideme"><a class="check"><i class="far fa-square fa-sm"></i> Lorem ipsum dolor sit amet, consectetur</a></p>
-                <p class="hideme"><a class="check"><i class="far fa-square fa-sm"></i> Lorem ipsum dolor sit amet, consectetur</a></p>
-                <p class="hideme"><a class="check"><i class="far fa-square fa-sm"></i> Lorem ipsum dolor sit amet, consectetur</a></p>
-                <p class="hideme"><a class="check"><i class="far fa-square fa-sm"></i> Lorem ipsum dolor sit amet, consectetur</a></p>
+                <repeat group="{{ @ingredients }}" value="{{ @ingredient }}">
+                    <p class="hideme"><a class="check"><i class="far fa-square fa-sm"></i> {{ @ingredient }}</a></p>
+                </repeat>
             </div>
             <hr>
 
             <!-- Instructions -->
             <h2 class="py-3 h2-responsive"><i class="fas fa-list-ol orange-text"></i> Instructions</h2>
             <div class="pl-3 pb-5">
-                <p class="hideme">1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, </p>
-                <p class="hideme">2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, </p>
-                <p class="hideme">3. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, </p>
-                <p class="hideme">4. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, </p>
-                <p class="hideme">5. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, </p>
-                <p class="hideme">6. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, </p>
+                <repeat group="{{ @instructions }}" value="{{ @instruction }}" counter="{{ @ctr }}">
+                    <p class="hideme">{{ @ctr }}. {{ @instruction }}</p>
+                </repeat>
             </div>
         </div>
         <!-- Post Content Column -->
@@ -76,26 +138,33 @@
                         <div class="col-lg-6">
                             <ul class="list-unstyled mb-0">
                                 <li>
-                                    <a href="#" class="orange-text darken-hover">Web Design</a>
+                                    <a href="#" class="orange-text darken-hover">Breakfast</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="orange-text darken-hover">HTML</a>
+                                    <a href="#" class="orange-text darken-hover">Lunch</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="orange-text darken-hover">Freebies</a>
+                                    <a href="#" class="orange-text darken-hover">Dinner</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="orange-text darken-hover">Dessert</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="col-lg-6">
                             <ul class="list-unstyled mb-0">
+
                                 <li>
-                                    <a href="#" class="orange-text darken-hover">JavaScript</a>
+                                    <a href="#" class="orange-text darken-hover">Healthy</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="orange-text darken-hover">Java</a>
+                                    <a href="#" class="orange-text darken-hover">Baking</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="orange-text darken-hover">Tutorials</a>
+                                    <a href="#" class="orange-text darken-hover">Drinks</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="orange-text darken-hover">Vegetarian</a>
                                 </li>
                             </ul>
                         </div>
@@ -136,7 +205,7 @@
                             <p class="card-text"><i class="far fa-clock"></i> {{ @recipe['time'] }}</p>
 
                             <!-- view -->
-                            <a href="#" class="btn peach-gradient text-white"><i class="fas fa-hamburger mr-1"></i> Full recipe</a>
+                            <a href="../recipe/{{ @recipe['recipe_id'] }}" class="btn peach-gradient text-white"><i class="fas fa-hamburger mr-1"></i> Full recipe</a>
 
                         </div>
                     </div>
@@ -151,4 +220,50 @@
     <!-- row -->
 </div>
 <!-- container -->
-<include href="views/includes/footer.html"/>
+
+<!-- Footer -->
+<footer class="page-footer font-small orange lighten-1 pt-4 mt-5">
+
+    <!-- Footer Links -->
+    <div class="container-fluid text-center text-md-left">
+
+        <!-- Grid row -->
+        <div class="row py-3">
+
+            <!-- Grid column -->
+            <div class="col-md-12 mb-md-0 mb-3 text-center">
+
+                <!-- Links -->
+                <h5 class="text-uppercase">Foodie</h5>
+
+                <a href="#" class="pr-3 darken-hover">Home</a>
+                <a href="#" class="pr-3 darken-hover">Share</a>
+                <a href="#" class="pr-3 darken-hover">Discover</a>
+                <a href="#" class="pr-3 darken-hover">Questions</a><br>
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+    <hr>
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3 orange lighten-1">© 2019 Copyright:
+        <a href=""> Foodie.com</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.2/js/mdb.min.js"></script>
+<!-- Custom JS -->
+<script type="text/javascript" src="../js/js.js"></script>
+</body>
+</html>

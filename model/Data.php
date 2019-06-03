@@ -35,6 +35,8 @@
  VALUES('Drinks');
  INSERT INTO category(category)
  VALUES('Miscellaneous');
+ INSERT INTO category(category)
+ VALUES('Vegetarian');
  */
 
 require '../../../config.php';
@@ -100,7 +102,7 @@ class Data
     {
         //define query
         $query = "SELECT * FROM recipe
-                  ORDER BY date_created ASC;";
+                  ORDER BY date_created ASC";
 
         //prepare statement
         $statement = $this->_db->prepare($query);
@@ -110,6 +112,26 @@ class Data
 
         //get result
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    function getRecipe($id)
+    {
+        //define query
+        $query = "SELECT * FROM recipe
+                  WHERE recipe_id = :id";
+
+        //prepare statement
+        $statement = $this->_db->prepare($query);
+
+        //bind parameter
+        $statement->bindParam(':id', $id, PDO::PARAM_STR);
+
+        //execute
+        $statement->execute();
+
+        //get result
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
 }

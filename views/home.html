@@ -45,7 +45,7 @@
                     <!--Mask with wave-->
                     <div class="view overlay">
                         <img src="https://mdbootstrap.com/img/Photos/Others/laptop-sm.jpg" class="img-fluid" alt="Sample image with waves effect.">
-                        <a href="/it328/foodie/recipe">
+                        <a href="../foodie/recipe/{{ @recipe['recipe_id'] }}">
                             <div class="mask waves-effect waves-light rgba-white-slight"></div>
                         </a>
                     </div>
@@ -75,7 +75,7 @@
                     <!-- Date -->
                     <h6 class="h6 pb-1">Posted on: {{ date('F j, Y', strtotime(@recipe['date_created'])) }}</h6>
                     <!-- View recipe -->
-                    <a class="btn peach-gradient text-white" href="#"><i class="fas fa-hamburger mr-1"></i> Full recipe </a>
+                    <a class="btn peach-gradient text-white" href="../foodie/recipe/{{ @recipe['recipe_id'] }}"><i class="fas fa-hamburger mr-1"></i> Full recipe </a>
                 </div>
                 <!-- column -->
             </div>

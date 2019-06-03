@@ -24,7 +24,7 @@ $f3 = Base::instance();
 //arrays
 $f3->set('categories', array('Breakfast', 'Lunch', 'Dinner',
                              'Dessert', 'Healthy', 'Baking',
-                             'Drinks', 'Vegetarian', 'Miscellaneous'));
+                             'Drinks',  'Miscellaneous', 'Vegetarian'));
 
 $f3->set('categoriesDescriptions', array(
     'Breakfast' => 'What nicer thing can you do for somebody than make them breakfast?',
@@ -218,6 +218,32 @@ $f3->route('GET /recipe', function($f3) {
     //display a view
     $view = new Template();
     echo $view->render('views/recipe.html');
+});
+
+//Define a route that displays student detail
+$f3->route('GET /recipe/@id', function($f3, $params){
+    $f3->set('page_title', 'Recipe');
+
+    //get recipes for featured recipes
+    global $db;
+    $recipes = $db->getRecipes();
+
+    //set recipes for home
+    $f3->set('recipes', $recipes);
+
+    $id = $params['id']; //must match^
+    $recipe = $db->getRecipe($id);
+
+    //separate both by new lines
+    $ingredients = preg_split("/\r\n|\n|\r/", $recipe['ingredients']);
+    $instructions = preg_split("/\r\n|\n|\r/", $recipe['instructions']);
+
+    $f3->set('recipe', $recipe);
+    $f3->set('ingredients', $ingredients);
+    $f3->set('instructions', $instructions);
+
+    $template = new Template();
+    echo $template->render('views/recipe.html');
 });
 
 // Define a test route
