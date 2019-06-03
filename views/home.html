@@ -68,7 +68,11 @@
                     <h4 class="h4 mb-4">{{ @recipe['title'] }}</h4>
 
                     <!-- Part of description -->
-                    <p class="font-weight-light">{{ substr(@recipe['description'] , 0, 261)}}</p>
+                    <p class="font-weight-light">{{ substr(@recipe['description'] , 0, 261)}}
+                        <check if="{{ strlen(@recipe['description']) > 261 }}">
+                            ...
+                        </check>
+                    </p>
 
                     <!-- Time -->
                     <h6 class="h6 pb-1"><i class="far fa-clock"></i> {{ @recipe['time'] }}</h6>

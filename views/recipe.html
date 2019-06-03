@@ -105,70 +105,50 @@
 
             <!-- Related recipe cards -->
             <h2 class="text-center pt-5 h2-responsive">Related Recipes</h2>
+            <!-- card container -->
             <div class="hold-cards pb-5">
-                <!-- Card -->
-                <div class="card mb-5 hoverable">
 
-                    <!-- Card image -->
-                    <div class="view overlay">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" alt="Card image cap">
-                        <a href="#!">
-                            <div class="mask rgba-white-slight"></div>
-                        </a>
+                <!-- cards -->
+                <repeat group="{{ @recipes }}" value="{{ @recipe }}">
+                    <!-- Card -->
+                    <div class="card mb-5 hoverable">
+                        <!-- Card image -->
+                        <div class="view overlay">
+                            <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" alt="Card image cap">
+                            <a href="#">
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+
+                        <!-- Card content -->
+                        <div class="card-body">
+                            <!-- title -->
+                            <h4 class="card-title h4-responsive">{{ @recipe['title'] }}</h4>
+
+                            <!-- description -->
+                            <p class="card-text">{{ substr(@recipe['description'], 0, 100) }}
+                                <check if="{{ strlen(@recipe['description']) > 100 }}">
+                                    ...
+                                </check>
+                            </p>
+
+                            <!-- time -->
+                            <p class="card-text"><i class="far fa-clock"></i> {{ @recipe['time'] }}</p>
+
+                            <!-- view -->
+                            <a href="#" class="btn peach-gradient text-white"><i class="fas fa-hamburger mr-1"></i> Full recipe</a>
+
+                        </div>
                     </div>
+                    <!-- Card -->
+                </repeat>
 
-                    <!-- Card content -->
-                    <div class="card-body">
-
-                        <h4 class="card-title h4-responsive">Title of the recipe</h4>
-
-                        <!-- Text -->
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <p class="card-text"><i class="far fa-clock"></i> 1 hr 30 min</p>
-
-
-                        <!-- Button -->
-                        <a href="#" class="btn peach-gradient text-white">Full recipe <i class="fas fa-arrow-right pl-1"></i></a>
-
-                    </div>
-                </div>
-                <!-- Card -->
-
-                <!-- Card -->
-                <div class="card mb-5 hoverable">
-
-                    <!-- Card image -->
-                    <div class="view overlay">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" alt="Card image cap">
-                        <a href="#!">
-                            <div class="mask rgba-white-slight"></div>
-                        </a>
-                    </div>
-
-                    <!-- Card content -->
-                    <div class="card-body">
-
-                        <!-- Title -->
-                        <h4 class="card-title h4-responsive">Title of the recipe</h4>
-
-                        <!-- Text -->
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <p class="card-text"><i class="far fa-clock"></i> 1 hr 30 min</p>
-
-
-                        <!-- Button -->
-                        <a href="#" class="btn peach-gradient text-white">Full recipe <i class="fas fa-arrow-right pl-1"></i></a>
-
-                    </div>
-                </div>
-                <!-- Card -->
             </div>
-            <!-- hold cards -->
+            <!-- card container -->
         </div>
         <!-- Sidebar Column -->
     </div>
-    <!-- /.row -->
-
+    <!-- row -->
 </div>
-<!-- /.container -->
+<!-- container -->
 <include href="views/includes/footer.html"/>

@@ -193,10 +193,15 @@ $f3->route('GET /contact', function($f3){
 //TODO one for main cards, side cards, and display pages
 
 //define recipe route
-////////////temporary////////////////
 $f3->route('GET /recipe', function($f3) {
-
     $f3->set('page_title', 'Home');
+
+    //get recipes for featured recipes
+    global $db;
+    $recipes = $db->getRecipes();
+
+    //set recipes for home
+    $f3->set('recipes', $recipes);
 
     //display a view
     $view = new Template();
