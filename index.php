@@ -24,7 +24,19 @@ $f3 = Base::instance();
 //arrays
 $f3->set('categories', array('Breakfast', 'Lunch', 'Dinner',
                              'Dessert', 'Healthy', 'Baking',
-                             'Drinks', 'Miscellaneous'));
+                             'Drinks', 'Vegetarian', 'Miscellaneous'));
+
+$f3->set('categoriesDescriptions', array(
+    'Breakfast' => 'What nicer thing can you do for somebody than make them breakfast?',
+    'Lunch' => 'We must explain the truth: There is no free lunch.',
+    'Dinner' => 'My favorite thing is to have a big dinner with friends and talk about life.',
+    'Dessert' => 'Everyday can be cheat day if you truly desire it.',
+    'Healthy' => 'Make eating healthy taste good while keeping it simple.',
+    'Baking' => 'Baking is both an art and a science. But it doesn\'t have to be hard',
+    'Drinks' => 'One can drink too much, but one never drinks enough.',
+    'Vegetarian' => 'Eating vegetarian doesn\'t mean you have to eat boring, humdrum dishes.',
+    'Miscellaneous' => 'When you don\'t know what you want but you is hungry.'
+));
 
 //turn on fat-free error reporting
 $f3->set('DEBUG', 3);
@@ -206,6 +218,15 @@ $f3->route('GET /recipe', function($f3) {
     //display a view
     $view = new Template();
     echo $view->render('views/recipe.html');
+});
+
+// Define a test route
+$f3->route('GET|POST /discover', function($f3){
+    $f3->set('page_title', 'Test');
+
+    // display a view
+    $view = new Template();
+    echo $view->render('views/search.html');
 });
 
 // Define a test route
