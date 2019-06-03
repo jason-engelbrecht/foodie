@@ -123,7 +123,7 @@ $f3->route('GET|POST /share', function($f3) {
     }
     //display a view
     $view = new Template();
-    echo $view->render('views/share_recipe/share_recipe1.html');
+    echo $view->render('views/forms/share_recipe1.html');
 });
 
 //define share recipe route - post
@@ -175,7 +175,7 @@ $f3->route('GET|POST /post', function($f3) {
     }
     //display a view
     $view = new Template();
-    echo $view->render('views/share_recipe/share_recipe2.html');
+    echo $view->render('views/forms/share_recipe2.html');
 });
 
 // Define a contact us route
