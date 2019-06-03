@@ -33,6 +33,13 @@ $f3->set('DEBUG', 3);
 $f3->route('GET /', function($f3) {
     $f3->set('page_title', 'Home');
 
+    //get recipes for featured recipes
+    global $db;
+    $recipes = $db->getRecipes();
+
+    //set recipes for home
+    $f3->set('recipes', $recipes);
+
     //display a view
     $view = new Template();
     echo $view->render('views/home.html');

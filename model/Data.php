@@ -95,4 +95,21 @@ class Data
         //execute statement
         $statement->execute();
     }
+
+    function getRecipes()
+    {
+        //define query
+        $query = "SELECT * FROM recipe
+                  ORDER BY date_created ASC;";
+
+        //prepare statement
+        $statement = $this->_db->prepare($query);
+
+        //execute
+        $statement->execute();
+
+        //get result
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }
