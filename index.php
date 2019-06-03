@@ -184,7 +184,7 @@ $f3->route('GET /contact', function($f3){
 
     // display a view
     $view = new Template();
-    echo $view->render('views/contact.html');
+    echo $view->render('views/forms/contact.html');
 });
 
 //TODO define a route for viewing each recipe
