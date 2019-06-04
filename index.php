@@ -181,6 +181,7 @@ $f3->route('GET|POST /post', function($f3) {
                 $recipe->getIngredients(), $recipe->getInstructions(), $recipe->getTime(),
                 $recipe->getMeasure(), 'none', $category_value);
 
+            session_destroy();
             $f3->reroute('/recipe'); //view recipe
         }
     }
@@ -200,22 +201,22 @@ $f3->route('GET /contact', function($f3){
 
 //Define a route that displays student detail
 $f3->route('GET /recipe/@id', function($f3, $params){
-    $f3->set('page_title', 'Recipe');
-
     //get recipes for featured recipes
     global $db;
     $recipes = $db->getRecipes();
-
-    //set recipes for home
     $f3->set('recipes', $recipes);
 
     $id = $params['id']; //must match^
     $recipe = $db->getRecipe($id);
 
+    //set page title to recipe title
+    $f3->set('page_title', $recipe['title']);
+
     //separate both by new lines
     $ingredients = preg_split("/\r\n|\n|\r/", $recipe['ingredients']);
     $instructions = preg_split("/\r\n|\n|\r/", $recipe['instructions']);
 
+    //set for view
     $f3->set('recipe', $recipe);
     $f3->set('ingredients', $ingredients);
     $f3->set('instructions', $instructions);
@@ -226,20 +227,11 @@ $f3->route('GET /recipe/@id', function($f3, $params){
 
 // Define a test route
 $f3->route('GET|POST /discover', function($f3){
-    $f3->set('page_title', 'Test');
+    $f3->set('page_title', 'Discover');
 
     // display a view
     $view = new Template();
-    echo $view->render('views/search.html');
-});
-
-// Define a test route
-$f3->route('GET /test', function($f3){
-    $f3->set('page_title', 'Test');
-
-    // display a view
-    $view = new Template();
-    echo $view->render('views/test.html');
+    echo $view->render('views/discover.html');
 });
 
 //run fat-free
