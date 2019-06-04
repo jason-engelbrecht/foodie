@@ -1,4 +1,10 @@
 <?php
+/**
+ * Jason Engelbrecht & Alvin Nava
+ * 5.29.2019
+ * https://jengelbrecht.greenriverdev.com/it328/foodie
+ * Data Class
+ */
 /*
  CREATE TABLE recipe (
  recipe_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -41,12 +47,19 @@
 
 require '../../../config.php';
 
+/**
+ * Class representing a data stream
+ *
+ * This class represents a data stream
+ * @author Jason Engelbrecht & Alvin Nava
+ * @copyright 2019
+ */
 class Data
 {
     private $_db;
 
     /**
-     * Database constructor
+     * Data constructor
      * @return void
      */
     function __construct()
@@ -70,6 +83,19 @@ class Data
         }
     }
 
+    /**
+     * Inserts a new recipe into the recipe table
+     *
+     * @param $title string - Title of recipe
+     * @param $description string - Description of recipe
+     * @param $ingredients string - Ingredients of recipe
+     * @param $instructions string - Instructions of recipe
+     * @param $time string - Time to make recipe
+     * @param $measure string - Measurements of recipe
+     * @param $image string - Image of recipe
+     * @param $category string - Category of recipe
+     * @return mixed - query success or failure
+     */
     function insertRecipe($title, $description, $ingredients, $instructions,
                           $time, $measure, $image, $category)
     {
@@ -98,11 +124,17 @@ class Data
         $statement->execute();
     }
 
+    /**
+     * Gets all recipes limited to 3
+     *
+     * @return mixed - Query results(recipes)
+     */
     function getRecipes()
     {
         //define query
         $query = "SELECT * FROM recipe
-                  ORDER BY date_created ASC";
+                  ORDER BY date_created ASC
+                  LIMIT 3";
 
         //prepare statement
         $statement = $this->_db->prepare($query);
@@ -115,6 +147,97 @@ class Data
         return $result;
     }
 
+    /**
+     * Gets related recipes to a category, limited to 3
+     * for related recipes in recipe/ views
+     *
+     * @param $category string - Category of recipe
+     * @return mixed - Query results(recipes)
+     */
+    function getRelatedRecipes($category)
+    {
+        //define query
+        $query = "SELECT * FROM recipe
+                  WHERE category = :category
+                  ORDER BY date_created ASC
+                  LIMIT 3";
+
+        //prepare statement
+        $statement = $this->_db->prepare($query);
+
+        //bind parameter
+        $statement->bindParam(':category', $category, PDO::PARAM_STR);
+
+        //execute
+        $statement->execute();
+
+        //get result
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+
+    /**
+     * Searches recipes for a match, checking if search term is like
+     * one of several columns. Also checking the category if supplied.
+     *
+     * @param $search_term string - Term to search for
+     * @param $category string - Category to check
+     * @return mixed - Query results(recipes)
+     */
+    function searchRecipes($search_term, $category='all')
+    {
+        //search all categories
+        if($category == 'all') {
+            //define query
+            $query = "SELECT * FROM recipe
+                      WHERE (title LIKE %:search%
+                      OR description LIKE %:search%
+                      OR ingredients LIKE %:search%
+                      OR instructions LIKE %:search%
+                      OR time LIKE %:search%)
+                      ORDER BY date_created ASC";
+
+            //prepare statement
+            $statement = $this->_db->prepare($query);
+
+            //bind parameter
+            $statement->bindParam(':search', $search_term, PDO::PARAM_STR);
+        }
+        //search category supplied
+        else {
+            //define query
+            $query = "SELECT * FROM recipe
+                  WHERE (category = :category)
+                  OR (title LIKE %:search%
+                  OR description LIKE %:search%
+                  OR ingredients LIKE %:search%
+                  OR instructions LIKE %:search%
+                  OR time LIKE %:search%)
+                  ORDER BY date_created ASC";
+
+            //prepare statement
+            $statement = $this->_db->prepare($query);
+
+            //bind parameters
+            $statement->bindParam(':category', $category, PDO::PARAM_STR);
+            $statement->bindParam(':search', $search_term, PDO::PARAM_STR);
+        }
+
+        //execute
+        $statement->execute();
+
+        //get result
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    /**
+     * Gets a unique recipe with the id
+     *
+     * @param $id string - id of recipe
+     * @return mixed - Query result(recipe)
+     */
     function getRecipe($id)
     {
         //define query

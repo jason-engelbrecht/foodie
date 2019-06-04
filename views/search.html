@@ -42,22 +42,8 @@
             </check>
 
             <!-- Card -->
-            <check if="{{ @ctr > 3 }}">
-                <true>
-                    <div class="card mb-5 hoverable wow fadeIn">
-                </true>
-                <false>
-                    <div class="card mb-5 hoverable">
-                </false>
-            </check>
-                <!--Card image-->
-                <!--<div class="view overlay">
-                    <img class="card-img-top" src="images/food.jpg" alt="Card image cap">
-                    <a href="#!">
-                        <div class="mask rgba-white-slight"></div>
-                    </a>
-                </div>-->
-
+            <div class="card mb-5 hoverable">
+                <!-- category image -->
                 <div class="view darken-hover">
                     <img src="images/category-images/{{ @picture }}" class="img-fluid" alt="placeholder">
                     <a href="">
@@ -66,19 +52,6 @@
                     </div>
                     </a>
                 </div>
-
-                <!--Card content-->
-                <!--<div class="card-body">-->
-                    <!--Title-->
-                    <!--<h4 class="card-title">{{ @category }}</h4>-->
-                    <!--<a href="#" class="orange-text text-center">
-                        <h3 class="h3-responsive deep-orange-lighter-hover card-title"><i class="fas fa-utensils"></i> {{ @category }}</h3>
-                    </a>-->
-                    <!--Text-->
-                    <!--<p class="card-text">{{ @description }}</p>-->
-                    <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                    <!--<button type="button" class="btn peach-gradient btn-md">Go</button>-->
-                <!--</div>-->
             </div>
             <!-- Card -->
 
