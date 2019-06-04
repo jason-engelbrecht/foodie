@@ -39,7 +39,7 @@
             <div class="container pt-5">
         </true>
         <false>
-            <div class="container pt-5 wow fadeIn slow">
+            <div class="container pt-5 wow fadeIn">
         </false>
     </check>
         <!-- recipe jumbotron -->
@@ -64,7 +64,7 @@
 
                     <!-- Category -->
                     <a href="#" class="orange-text">
-                        <h6 class="h6 pb-1 deep-orange-lighter-hover"><i class="fas fa-utensils"></i> {{ @categories[(int)@recipe['category']] }}</h6>
+                        <h6 class="h6 pb-1 deep-orange-lighter-hover"><i class="fas fa-utensils"></i> {{ @categories[(int)@recipe['category']-1] }}</h6>
                     </a>
 
                     <!-- Title -->

@@ -74,7 +74,7 @@ Description
         <div class="col-lg-7">
             <a href="#" class="orange-text">
                 <h5 class="h5-responsive pl-1 pb-1 deep-orange-lighter-hover animated fadeInRightBig slower">
-                    <i class="fas fa-utensils"></i> {{ @categories[(int)@recipe['category']] }}</h5>
+                    <i class="fas fa-utensils"></i> {{ @categories[(int)@recipe['category']-1] }}</h5>
             </a>
             <!-- Title -->
             <h1 class="h1-responsive animated fadeInRightBig slow">{{ @recipe['title'] }}</h1>
@@ -184,7 +184,7 @@ Description
                         <!-- Card image -->
                         <div class="view overlay">
                             <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" alt="Card image cap">
-                            <a href="#">
+                            <a href="../recipe/{{ @recipe['recipe_id'] }}">
                                 <div class="mask rgba-white-slight"></div>
                             </a>
                         </div>

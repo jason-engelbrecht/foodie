@@ -21,12 +21,12 @@ option:focus {
 
 /* darken element on hover w transition */
 .darken-hover {
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: .5s;
+    transition: .5s;
 }
 .darken-hover:hover {
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: .5s;
+    transition: .5s;
     filter: brightness(95%);
     opacity: 0.9;
 }
