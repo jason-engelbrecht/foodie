@@ -1,7 +1,7 @@
 <include href="views/includes/header.html"/>
 <!-- Jumbotron -->
-<div class="card card-image hoverable" style="background-image: url(images/food.jpg)">
-    <div class="text-white text-center rgba-grey-strong py-5 px-4">
+<div class="card card-image" style="background-image: url(images/food.jpg);">
+    <div class="text-white text-center rgba-stylish-light py-5 px-4">
         <div class="pt-5 pb-3">
 
             <!-- Content -->
@@ -11,7 +11,7 @@
                 Here at Foodie you can discover new recipes as well as share your own delicious recipes.<br>
                 There is no sign up necessary so feel free to share what you'd like.
             </h4>
-            <a class="btn peach-gradient mb-3"><i class="fas fa-clone left"></i> Discover Recipes</a>
+            <a class="btn peach-gradient mb-3 text-white" href="../foodie/discover"><i class="fas fa-clone left"></i> Discover Recipes</a>
         </div>
     </div>
 </div>
@@ -21,7 +21,7 @@
     <div class="text-white text-center px-4 pt-2">
         <div class="py-2">
             <h4 class="h4-responsive darken-hover">
-                <a><i class="fas fa-globe-americas mr-1"></i> Share a recipe</a>
+                <a href="../foodie/share" class="text-white"><i class="fas fa-globe-americas mr-1"></i> Share a recipe</a>
             </h4>
         </div>
     </div>
@@ -29,12 +29,19 @@
 <!-- Jumbotron -->
 
 <h1 class="h1-responsive pt-5 mt-5 text-center">Featured Recipes</h1>
-<h1 class="h1-responsive text-center"><i class="far fa-hand-point-down"></i></h1>
+<!--<h1 class="h1-responsive text-center"><i class="far fa-hand-point-down"></i></h1>-->
 
 <!-- recipe cards -->
-<repeat group="{{ @recipes }}" value="{{ @recipe }}">
+<repeat group="{{ @recipes }}" value="{{ @recipe }}" counter="{{ @ctr }}">
     <!-- container -->
-    <div class="container pt-5 wow fadeIn slow">
+    <check if="{{ @ctr == 1 }}">
+        <true>
+            <div class="container pt-5">
+        </true>
+        <false>
+            <div class="container pt-5 wow fadeIn slow">
+        </false>
+    </check>
         <!-- recipe jumbotron -->
         <div class="jumbotron text-center hoverable p-4 grey lighten-5">
             <!-- row -->
@@ -87,7 +94,7 @@
 </repeat>
 
 <div class="text-center">
-    <button type="button" class="btn btn-link text-center">More</button>
+    <a class="btn btn-link text-center" href="../foodie/discover">More</a>
 </div>
 <include href="views/includes/footer.html"/>
 

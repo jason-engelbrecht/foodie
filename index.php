@@ -25,29 +25,16 @@ $f3 = Base::instance();
 $f3->set('categories', array('Breakfast', 'Lunch', 'Dinner',
                              'Dessert', 'Healthy', 'Baking',
                              'Drinks',  'Miscellaneous', 'Vegetarian'));
-
-$f3->set('categoriesDescriptions', array(
-    'Breakfast' => 'What nicer thing can you do for somebody than make them breakfast?',
-    'Lunch' => 'We must explain the truth: There is no free lunch.',
-    'Dinner' => 'My favorite thing is to have a big dinner with friends and talk about life.',
-    'Dessert' => 'Everyday can be cheat day if you truly desire it.',
-    'Healthy' => 'Make eating healthy taste good while keeping it simple.',
-    'Baking' => 'Baking is both an art and a science. But it doesn\'t have to be hard',
-    'Drinks' => 'One can drink too much, but one never drinks enough.',
-    'Vegetarian' => 'Eating vegetarian doesn\'t mean you have to eat boring, humdrum dishes.',
-    'Miscellaneous' => 'When you don\'t know what you want but you is hungry.'
-));
-
-$f3->set('pictures', array(
-   'Breakfast' => 'images/breakfast.jpg',
-   'Lunch' => 'images/lunch.jpg',
-   'Dinner' => 'images/dinner.jpg',
-   'Dessert' => 'images/dessert.jpg',
-   'Healthy' => 'images/healthy.jpg',
-    'Baking' => 'images/baking.jpg',
-    'Drinks' => 'images/drinks.jpg',
-    'Vegetarian' => 'images/vegetarian.jpg',
-    'Miscellaneous' => 'images/miscellaneous.jpg'
+$f3->set('categoriesPictures', array(
+   'Breakfast' => 'breakfast.jpg',
+   'Lunch' => 'lunch.jpg',
+   'Dinner' => 'dinner.jpg',
+   'Dessert' => 'dessert.jpg',
+   'Healthy' => 'healthy.jpg',
+    'Baking' => 'baking.jpg',
+    'Drinks' => 'drinks.jpg',
+    'Vegetarian' => 'vegetarian.jpg',
+    'Miscellaneous' => 'miscellaneous.jpg'
 ));
 
 //turn on fat-free error reporting
@@ -209,27 +196,6 @@ $f3->route('GET /contact', function($f3){
     // display a view
     $view = new Template();
     echo $view->render('views/forms/contact.html');
-});
-
-//TODO define a route for viewing each recipe
-//TODO define a discover recipe route
-//TODO define select queries for displaying recipes
-//TODO one for main cards, side cards, and display pages
-
-//define recipe route
-$f3->route('GET /recipe', function($f3) {
-    $f3->set('page_title', 'Home');
-
-    //get recipes for featured recipes
-    global $db;
-    $recipes = $db->getRecipes();
-
-    //set recipes for home
-    $f3->set('recipes', $recipes);
-
-    //display a view
-    $view = new Template();
-    echo $view->render('views/recipe.html');
 });
 
 //Define a route that displays student detail

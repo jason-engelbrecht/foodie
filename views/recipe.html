@@ -98,7 +98,7 @@ Description
             <h2 class="py-3 h2-responsive"><i class="fas fa-tasks orange-text"></i> Ingredients</h2>
             <div class="pl-3 pb-4">
                 <repeat group="{{ @ingredients }}" value="{{ @ingredient }}">
-                    <p class="hideme"><a class="check"><i class="far fa-square fa-sm"></i> {{ @ingredient }}</a></p>
+                    <p class="wow fadeIn faster"><a class="check"><i class="far fa-square fa-sm"></i> {{ @ingredient }}</a></p>
                 </repeat>
             </div>
             <hr>
@@ -107,7 +107,7 @@ Description
             <h2 class="py-3 h2-responsive"><i class="fas fa-list-ol orange-text"></i> Instructions</h2>
             <div class="pl-3 pb-5">
                 <repeat group="{{ @instructions }}" value="{{ @instruction }}" counter="{{ @ctr }}">
-                    <p class="hideme">{{ @ctr }}. {{ @instruction }}</p>
+                    <p class="wow fadeIn faster">{{ @ctr }}. {{ @instruction }}</p>
                 </repeat>
             </div>
         </div>
