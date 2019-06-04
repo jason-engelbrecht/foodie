@@ -38,6 +38,18 @@ $f3->set('categoriesDescriptions', array(
     'Miscellaneous' => 'When you don\'t know what you want but you is hungry.'
 ));
 
+$f3->set('pictures', array(
+   'Breakfast' => 'images/breakfast.jpg',
+   'Lunch' => 'images/lunch.jpg',
+   'Dinner' => 'images/dinner.jpg',
+   'Dessert' => 'images/dessert.jpg',
+   'Healthy' => 'images/healthy.jpg',
+    'Baking' => 'images/baking.jpg',
+    'Drinks' => 'images/drinks.jpg',
+    'Vegetarian' => 'images/vegetarian.jpg',
+    'Miscellaneous' => 'images/miscellaneous.jpg'
+));
+
 //turn on fat-free error reporting
 $f3->set('DEBUG', 3);
 
