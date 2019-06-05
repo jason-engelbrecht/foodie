@@ -55,7 +55,9 @@ Description
             <li class="nav-item">
                 <a class="nav-link" href="../discover">Discover</a>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link" href="../foodie/search"><i class="fas fa-search"></i></a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="../contact"><i class="fas fa-question-circle"></i></a>
             </li>
@@ -85,7 +87,7 @@ Description
             <h6 class="pl-1 h6-responsive">Posted on {{ date('F j, Y', strtotime(@recipe['date_created'])) }}</h6>
 
             <!-- Preview Image -->
-            <img class="img-fluid rounded z-depth-1 my-3" src="../images/cereal.jpg" alt="">
+            <img class="img-fluid rounded z-depth-1 my-3" src="../{{ @recipe['image'] }}" alt="">
 
             <!-- Post Content -->
             <h4 class="h4-responsive py-3"><i class="far fa-clock"></i> {{ @recipe['time'] }}</h4>
@@ -183,7 +185,7 @@ Description
                     <div class="card mb-5 hoverable">
                         <!-- Card image -->
                         <div class="view overlay">
-                            <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" alt="Card image cap">
+                            <img class="card-img-top" src="../{{ @recipe['image'] }}" alt="Card image cap">
                             <a href="../recipe/{{ @recipe['recipe_id'] }}">
                                 <div class="mask rgba-white-slight"></div>
                             </a>

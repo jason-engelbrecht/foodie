@@ -133,7 +133,7 @@ class Data
     {
         //define query
         $query = "SELECT * FROM recipe
-                  ORDER BY date_created ASC
+                  ORDER BY date_created DESC
                   LIMIT 3";
 
         //prepare statement
@@ -152,13 +152,15 @@ class Data
      * for related recipes in recipe/ views
      *
      * @param $category string - Category of recipe
+     * @param $id string - ID of recipe to not include
      * @return mixed - Query results(recipes)
      */
-    function getRelatedRecipes($category)
+    function getRelatedRecipes($category, $id)
     {
         //define query
         $query = "SELECT * FROM recipe
                   WHERE category = :category
+                  AND recipe_id <> :id
                   ORDER BY date_created ASC
                   LIMIT 3";
 
@@ -167,6 +169,7 @@ class Data
 
         //bind parameter
         $statement->bindParam(':category', $category, PDO::PARAM_STR);
+        $statement->bindParam(':id', $id, PDO::PARAM_STR);
 
         //execute
         $statement->execute();
@@ -185,17 +188,19 @@ class Data
      * @param $category string - Category to check
      * @return mixed - Query results(recipes)
      */
-    function searchRecipes($search_term, $category='all')
+    function searchRecipes($search_term, $category)
     {
+
+        $search_term = '%' . $search_term . '%';
         //search all categories
         if($category == 'all') {
             //define query
             $query = "SELECT * FROM recipe
-                      WHERE (title LIKE %:search%
-                      OR description LIKE %:search%
-                      OR ingredients LIKE %:search%
-                      OR instructions LIKE %:search%
-                      OR time LIKE %:search%)
+                      WHERE (title LIKE :search
+                      OR description LIKE :search
+                      OR ingredients LIKE :search
+                      OR instructions LIKE :search
+                      OR time LIKE :search)
                       ORDER BY date_created ASC";
 
             //prepare statement
@@ -208,13 +213,13 @@ class Data
         else {
             //define query
             $query = "SELECT * FROM recipe
-                  WHERE (category = :category)
-                  OR (title LIKE %:search%
-                  OR description LIKE %:search%
-                  OR ingredients LIKE %:search%
-                  OR instructions LIKE %:search%
-                  OR time LIKE %:search%)
-                  ORDER BY date_created ASC";
+                      WHERE (category = :category)
+                      AND (title LIKE :search
+                      OR description LIKE :search
+                      OR ingredients LIKE :search
+                      OR instructions LIKE :search
+                      OR time LIKE :search)
+                      ORDER BY date_created ASC";
 
             //prepare statement
             $statement = $this->_db->prepare($query);
