@@ -1,0 +1,126 @@
+<include href="views/includes/header.html"/>
+
+
+<!-- purple header -->
+<div class="edge-header orange lighten-2" style="height:215px;"></div>
+
+<!-- main container -->
+<div class="container free-bird">
+    <!-- row -->
+    <div class="row">
+        <!-- container -->
+        <div class="col-md-8 col-lg-7 mx-auto float-none white z-depth-1 py-2 px-2 grey lighten-5">
+
+            <!-- card -->
+            <div class="card-body">
+                <h1 class="h1-responsive text-center"><strong>Contact Us</strong></h1>
+                <h4 class="pb-4 h4-responsive text-center orange-text">Tell us a little about it <i class="far fa-hand-point-down"></i></h4>
+
+                <!-- form -->
+                <form action="" method="post">
+
+                    <!-- title -->
+                    <div class="form-group py-3">
+                        <h5 class="h5-responsive"><label for="title">What do you call it?</label></h5>
+                        <check if="{{ isset(@errors['title']) }}">
+                            <em class="text-danger">{{ @errors['title'] }}</em>
+                        </check>
+                        <input type="text" class="form-control hoverable" id="title"
+                               placeholder="Title" name="title" value="{{ @title }}">
+                    </div>
+
+                    <!-- time -->
+                    <div class="form-group py-3">
+                        <h5 class="h5-responsive"><label for="time">How long does it take to make?</label></h5>
+                        <check if="{{ isset(@errors['time']) }}">
+                            <em class="text-danger">{{ @errors['time'] }}</em>
+                        </check>
+                        <input type="text" class="form-control hoverable" id="time"
+                               placeholder="1 hr 30 min" name="time" value="{{ @time }}">
+                    </div>
+
+                    <!-- category -->
+                    <div class="form-group py-3">
+                        <h5 class="h5-responsive"><label for="category">How would you categorize it?</label></h5>
+                        <check if="{{ isset(@errors['category']) }}">
+                            <em class="text-danger">{{ @errors['category'] }}</em>
+                        </check>
+                        <select class="browser-default custom-select hoverable" id="category" name="category">
+                            <option selected>Select a category</option>
+                            <repeat group="{{ @categories }}" value="{{ @categoryValue }}">
+                                <option value="{{ @categoryValue }}"
+                                <check if="{{ @categoryValue == @category }}">
+                                    selected="selected"
+                                </check>>
+                                {{ @categoryValue }}
+                                </option>
+                            </repeat>
+                        </select>
+                    </div>
+
+                    <!-- image -->
+                    <h5 class="h5-responsive pt-3 pb-2">Want people to see how amazing it looks?</h5>
+                    <div class="input-group hoverable">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-camera"></i></span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                   aria-describedby="inputGroupFileAddon01" name="image">
+                            <label class="custom-file-label" for="inputGroupFile01">Select image</label>
+                        </div>
+                    </div>
+                    <small class="pb-3">If you don't have an image a default one will be used</small>
+
+                    <!-- Description -->
+                    <div class="form-group pt-5 pb-3">
+                        <h5 class="h5-responsive"><label for="description">Describe it</label></h5>
+                        <check if="{{ isset(@errors['description']) }}">
+                            <em class="text-danger">{{ @errors['description'] }}</em>
+                        </check>
+                        <textarea id="description" class="form-control hoverable" rows="8"
+                                  placeholder="My recipe is incredible and this is why.."
+                                  name="description">{{ @description }}</textarea>
+                    </div>
+
+                    <!-- measure -->
+                    <div class="py-3">
+                        <p>Is it measured in metric or standard?</p>
+                        <check if="{{ isset(@errors['measure']) }}">
+                            <em class="text-danger">{{ @errors['measure'] }}</em>
+                        </check>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" id="metric" name="measure" value="Metric"
+                            <check if="{{ @measure == 'Metric' }}">
+                                checked="checked"
+                            </check>>
+                            <label class="custom-control-label" for="metric">Metric</label>
+                        </div>
+
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" id="standard" name="measure" value="Standard"
+                            <check if="{{ @measure == 'Standard' }}">
+                                checked="checked"
+                            </check>>
+                            <label class="custom-control-label" for="standard">Standard</label>
+                        </div>
+                    </div>
+
+                    <!-- submit/back -->
+                    <div class="pt-5 text-center">
+                        <a class="btn btn-outline-orange waves-effect" href="../foodie">Back <i class="fas fa-undo-alt mt-1 pl-1"></i></a>
+                        <button type="submit" class="btn peach-gradient text-white"
+                                name="submit">Next <i class="fas fa-arrow-right pl-1"></i></button>
+                    </div>
+                </form>
+                <!-- form -->
+            </div>
+            <!--card-->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- row -->
+</div>
+
+
+<include href="views/includes/footer.html"/>
