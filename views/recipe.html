@@ -1,80 +1,11 @@
-<!--
-Jason Engelbrecht
-Date
-URL
-Description
--->
-<!doctype html>
-<html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Font awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.2/css/mdb.min.css" rel="stylesheet">
-    <!-- Custom styles -->
-    <link rel="stylesheet" type="text/css" href="../css/css.css" >
-    <!-- Favicon -->
-    <link rel="icon" href="../images/utensils.png">
-
-    <!-- JQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-    <title>{{ @page_title }}</title>
-</head>
-<body class="orange lighten-5">
-
-<!--Navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark orange lighten-1 fixed-top scrolling-navbar">
-
-    <!-- Navbar brand -->
-    <a class="navbar-brand pl-lg-5 darken-hover" href="../"><i class="fas fa-utensils"></i> Foodie</a>
-
-    <!-- Collapse button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-            aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="basicExampleNav">
-
-        <!-- Links -->
-        <ul class="navbar-nav ml-auto pr-5">
-            <li class="nav-item">
-                <a class="nav-link" href="../">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../share">Share</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../discover">Discover</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../foodie/search"><i class="fas fa-search"></i></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../contact"><i class="fas fa-question-circle"></i></a>
-            </li>
-        </ul>
-        <!-- Links -->
-    </div>
-    <!-- Collapsible content -->
-
-</nav>
-<!-- Navbar -->
+<include href="views/includes/header.html"/>
 <!-- Page Content -->
 <div class="container pt-5 mt-5 content">
     <div class="row">
 
         <!-- Post Content Column -->
         <div class="col-lg-7">
-            <a href="#" class="orange-text">
+            <a href="../search/{{ @categories[(int)@recipe['category']-1] }}" class="orange-text">
                 <h5 class="h5-responsive pl-1 pb-1 deep-orange-lighter-hover animated fadeInRightBig slower">
                     <i class="fas fa-utensils"></i> {{ @categories[(int)@recipe['category']-1] }}</h5>
             </a>
@@ -120,36 +51,37 @@ Description
 
             <!-- Search  -->
             <div class="card my-4 hoverable mt-lg-5">
-                <h5 class="card-header h5-responsive">Discover Recipes</h5>
+                <h5 class="card-header h5-responsive">Discover</h5>
                 <div class="card-body">
                     <!-- Search form -->
-                    <div class="form-inline w-100">
+                    <form class="form-inline w-100" method="post" action="">
                         <div class="my-0">
-                            <input class="form-control" type="text" placeholder="Search for.." aria-label="Search">
+                            <input class="form-control" type="text" placeholder="Search for recipes.."
+                                   name="search" aria-label="Search">
                         </div>
-                        <button class="btn btn-md peach-gradient my-0 text-white" type="submit">Go</button>
-                    </div>
+                        <button class="btn btn-md peach-gradient my-0 text-white" type="submit" name="submit">Go</button>
+                    </form>
                 </div>
             </div>
 
             <!-- Categories -->
             <div class="card my-4 hoverable">
-                <h5 class="card-header h5-responsive">Recipe Categories</h5>
+                <h5 class="card-header h5-responsive">Categories</h5>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-6">
                             <ul class="list-unstyled mb-0">
                                 <li>
-                                    <a href="#" class="orange-text darken-hover">Breakfast</a>
+                                    <a href="{{ @path }}/search/Breakfast" class="orange-text darken-hover">Breakfast</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="orange-text darken-hover">Lunch</a>
+                                    <a href="{{ @path }}/search/Lunch" class="orange-text darken-hover">Lunch</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="orange-text darken-hover">Dinner</a>
+                                    <a href="{{ @path }}/search/Dinner" class="orange-text darken-hover">Dinner</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="orange-text darken-hover">Dessert</a>
+                                    <a href="{{ @path }}/search/Dessert" class="orange-text darken-hover">Dessert</a>
                                 </li>
                             </ul>
                         </div>
@@ -157,16 +89,16 @@ Description
                             <ul class="list-unstyled mb-0">
 
                                 <li>
-                                    <a href="#" class="orange-text darken-hover">Healthy</a>
+                                    <a href="{{ @path }}/search/Healthy" class="orange-text darken-hover">Healthy</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="orange-text darken-hover">Baking</a>
+                                    <a href="{{ @path }}/search/Baking" class="orange-text darken-hover">Baking</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="orange-text darken-hover">Drinks</a>
+                                    <a href="{{ @path }}/search/Drinks" class="orange-text darken-hover">Drinks</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="orange-text darken-hover">Vegetarian</a>
+                                    <a href="{{ @path }}/search/Vegetarian" class="orange-text darken-hover">Vegetarian</a>
                                 </li>
                             </ul>
                         </div>
@@ -185,8 +117,8 @@ Description
                     <div class="card mb-5 hoverable">
                         <!-- Card image -->
                         <div class="view overlay">
-                            <img class="card-img-top" src="../{{ @recipe['image'] }}" alt="Card image cap">
-                            <a href="../recipe/{{ @recipe['recipe_id'] }}">
+                            <img class="card-img-top" src="{{ @path }}/{{ @recipe['image'] }}" alt="Card image cap">
+                            <a href="{{ @path }}/recipe/{{ @recipe['recipe_id'] }}">
                                 <div class="mask rgba-white-slight"></div>
                             </a>
                         </div>
@@ -207,7 +139,7 @@ Description
                             <p class="card-text"><i class="far fa-clock"></i> {{ @recipe['time'] }}</p>
 
                             <!-- view -->
-                            <a href="../recipe/{{ @recipe['recipe_id'] }}" class="btn peach-gradient text-white"><i class="fas fa-hamburger mr-1"></i> Full recipe</a>
+                            <a href="{{ @path }}/recipe/{{ @recipe['recipe_id'] }}" class="btn peach-gradient text-white"><i class="fas fa-hamburger mr-1"></i> Full recipe</a>
 
                         </div>
                     </div>
@@ -222,50 +154,4 @@ Description
     <!-- row -->
 </div>
 <!-- container -->
-
-<!-- Footer -->
-<footer class="page-footer font-small orange lighten-1 pt-4 mt-5">
-
-    <!-- Footer Links -->
-    <div class="container-fluid text-center text-md-left">
-
-        <!-- Grid row -->
-        <div class="row py-3">
-
-            <!-- Grid column -->
-            <div class="col-md-12 mb-md-0 mb-3 text-center">
-
-                <!-- Links -->
-                <h5 class="text-uppercase">Foodie</h5>
-
-                <a href="#" class="pr-3 darken-hover">Home</a>
-                <a href="#" class="pr-3 darken-hover">Share</a>
-                <a href="#" class="pr-3 darken-hover">Discover</a>
-                <a href="#" class="pr-3 darken-hover">Questions</a><br>
-            </div>
-            <!-- Grid column -->
-
-        </div>
-        <!-- Grid row -->
-
-    </div>
-    <!-- Footer Links -->
-    <hr>
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3 orange lighten-1">© 2019 Copyright:
-        <a href=""> Foodie.com</a>
-    </div>
-    <!-- Copyright -->
-</footer>
-<!-- Footer -->
-
-<!-- Bootstrap tooltips -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.2/js/mdb.min.js"></script>
-<!-- Custom JS -->
-<script type="text/javascript" src="../js/js.js"></script>
-</body>
-</html>
+<include href="views/includes/footer.html"/>

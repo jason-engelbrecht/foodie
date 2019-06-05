@@ -63,7 +63,7 @@
                 <div class="col-md-7 text-md-left ml-3 mt-3">
 
                     <!-- Category -->
-                    <a href="#" class="orange-text">
+                    <a href="{{ @path }}/search/{{@categories[(int)@recipe['category']-1]}}" class="orange-text">
                         <h6 class="h6 pb-1 deep-orange-lighter-hover"><i class="fas fa-utensils"></i> {{ @categories[(int)@recipe['category']-1] }}</h6>
                     </a>
 

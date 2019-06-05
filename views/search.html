@@ -8,23 +8,27 @@
     <!-- main row -->
     <div class="row">
         <!-- main col -->
-        <div class="col-md-10 col-lg-9 mx-auto float-none white z-depth-1 py-4 pb-5 px-2 grey lighten-5">
+        <div class="col-md-10 col-lg-9 mx-auto float-none white z-depth-1 py-5 px-2 grey lighten-5">
 
-            <h1 class="card-title display-4 mt-4 mb-2 pt-2">Search for Recipes</h1>
+            <h1 class="card-title h1-responsive mb-3 pt-lg-4 pt-sm-0">Search for Recipes</h1>
 
             <div class="row justify-content-center no-gutters">
-                <form class="form-inline my-2" action="" method="post">
+                <form class="form-inline pb-lg-5 pb-sm-0" action="" method="post">
 
-                    <div class="col-lg-6 px-1 mb-sm-1 mb-md-0">
-                        <label><input class="form-control hoverable" type="text" placeholder="Search for recipes..." size="30" name="search"></label>
+                    <div class="col-lg-6 px-1 mb-1">
+                        <label><input class="form-control hoverable" type="text" placeholder="Search..." size="30"
+                                      name="search" value="{{ @SESSION.search }}"></label>
                     </div>
 
-                    <div class="col-lg-3 px-1">
+                    <div class="col-lg-3 px-1 mb-1">
                         <label>
                             <select class="browser-default custom-select hoverable" name="category">
                                 <option value="all">All</option>
                                 <repeat group="{{ @categories }}" value="{{ @category }}">
-                                    <option value="{{ @category }}">
+                                    <option value="{{ @category }}"
+                                    <check if="{{ @category == @SESSION.category }}">
+                                    selected="selected"
+                                    </check>>
                                         {{ @category }}
                                     </option>
                                 </repeat>
@@ -32,9 +36,10 @@
                         </label>
                     </div>
 
-                    <div class="col-lg-3 px-1">
-                        <button class="btn btn-md peach-gradient text-white px-5 py-2" type="submit" name="submit">Discover</button>
+                    <div class="col-lg-3 px-1 mb-1">
+                        <button class="btn peach-gradient text-white px-5 py-2" type="submit" name="submit">Discover</button>
                     </div>
+
                 </form>
             </div>
             <!-- inner row -->
@@ -46,9 +51,15 @@
 <!-- main container -->
 
 
-<div class="container my-5 px-5 pb-5">
-    <h1 class="h1-responsive text-center">Here are your results for "{{ @SESSION.search }}"</h1>
-
+<div class="container my-5 px-5 pb-5 pt-3">
+    <check if="{{ !empty(@SESSION.search) }}">
+        <true>
+            <h2 class="h2-responsive text-center animated tada">Here are your results for <strong class="orange-text">{{ @SESSION.search }}</strong></h2>
+        </true>
+        <false>
+            <h2 class="h2-responsive text-center"></h2>
+        </false>
+    </check>
     <!-- search results -->
 
     <!-- recipe cards -->
@@ -71,8 +82,8 @@
                         <!-- image -->
                         <!--Mask with wave-->
                         <div class="view overlay">
-                            <img src="{{ @recipe['image'] }}" class="img-fluid" alt="Sample image with waves effect.">
-                            <a href="../foodie/recipe/{{ @recipe['recipe_id'] }}">
+                            <img src="{{ @path }}/{{ @recipe['image'] }}" class="img-fluid" alt="Sample image with waves effect.">
+                            <a href="{{ @path }}/recipe/{{ @recipe['recipe_id'] }}">
                                 <div class="mask waves-effect waves-light rgba-white-slight"></div>
                             </a>
                         </div>
@@ -83,7 +94,7 @@
                     <div class="col-md-7 text-md-left ml-3 mt-3">
 
                         <!-- Category -->
-                        <a href="#" class="orange-text">
+                        <a href="{{ @path }}/search/{{@categories[(int)@recipe['category']-1]}}" class="orange-text">
                             <h6 class="h6 pb-1 deep-orange-lighter-hover"><i class="fas fa-utensils"></i> {{ @categories[(int)@recipe['category']-1] }}</h6>
                         </a>
 
@@ -102,7 +113,7 @@
                         <!-- Date -->
                         <h6 class="h6 pb-1">Posted on: {{ date('F j, Y', strtotime(@recipe['date_created'])) }}</h6>
                         <!-- View recipe -->
-                        <a class="btn peach-gradient text-white" href="../foodie/recipe/{{ @recipe['recipe_id'] }}"><i class="fas fa-hamburger mr-1"></i> Full recipe </a>
+                        <a class="btn peach-gradient text-white" href="{{ @path }}/recipe/{{ @recipe['recipe_id'] }}"><i class="fas fa-hamburger mr-1"></i> Full recipe </a>
                     </div>
                     <!-- column -->
                 </div>

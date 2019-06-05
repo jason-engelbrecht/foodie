@@ -14,21 +14,8 @@
             <!-- row -->
             <div class="row justify-content-center no-gutters">
                 <form class="form-inline my-2" action="" method="post">
-                    <div class="col-lg-6 px-0 mb-sm-1 mb-md-0">
-                        <label><input class="form-control hoverable" type="text" placeholder="Search for recipes..." size="30" name="search"></label>
-                    </div>
-
-                    <div class="col-lg-3 px-0">
-                        <label>
-                            <select class="browser-default custom-select hoverable" name="category">
-                                <option value="all">All</option>
-                                <repeat group="{{ @categories }}" value="{{ @category }}">
-                                    <option value="{{ @category }}">
-                                        {{ @category }}
-                                    </option>
-                                </repeat>
-                            </select>
-                        </label>
+                    <div class="col-lg-9 px-0">
+                        <label><input class="form-control hoverable" type="text" placeholder="Search for recipes..." size="45" name="search"></label>
                     </div>
 
                     <div class="col-lg-3 px-0">
@@ -60,7 +47,7 @@
                 <!-- category image -->
                 <div class="view darken-hover">
                     <img src="images/category-images/{{ @picture }}" class="img-fluid" alt="placeholder">
-                    <a href="">
+                    <a href="search/{{ @category }}">
                     <div class="mask flex-center waves-effect waves-light rgba-stylish-light">
                         <h2 class="white-text h2-responsive card-title">{{ @category }}</h2>
                     </div>

@@ -188,9 +188,9 @@ class Data
      * @param $category string - Category to check
      * @return mixed - Query results(recipes)
      */
-    function searchRecipes($search_term, $category)
+    function searchRecipes($search_term, $category='all')
     {
-
+        //add wildcards to search
         $search_term = '%' . $search_term . '%';
         //search all categories
         if($category == 'all') {

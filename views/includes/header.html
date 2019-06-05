@@ -18,9 +18,9 @@ Description
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.2/css/mdb.min.css" rel="stylesheet">
     <!-- Custom styles -->
-    <link rel="stylesheet" type="text/css" href="css/css.css" >
+    <link rel="stylesheet" type="text/css" href="{{ @cssJsPath }}css/css.css" >
     <!-- Favicon -->
-    <link rel="icon" href="images/utensils.png">
+    <link rel="icon" href="{{ @cssJsPath }}images/utensils.png">
 
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -33,7 +33,7 @@ Description
 <nav class="navbar navbar-expand-lg navbar-dark orange lighten-1 fixed-top scrolling-navbar">
 
     <!-- Navbar brand -->
-    <a class="navbar-brand pl-lg-5 darken-hover" href="../foodie"><i class="fas fa-utensils"></i> Foodie</a>
+    <a class="navbar-brand pl-lg-5 darken-hover" href="{{ @path }}"><i class="fas fa-utensils"></i> Foodie</a>
 
     <!-- Collapse button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
@@ -47,19 +47,19 @@ Description
         <!-- Links -->
         <ul class="navbar-nav ml-auto pr-5">
             <li class="nav-item">
-                <a class="nav-link" href="../foodie">Home</a>
+                <a class="nav-link" href="{{ @path }}">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../foodie/share">Share</a>
+                <a class="nav-link" href="{{ @path }}/share">Share</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../foodie/discover">Discover</a>
+                <a class="nav-link" href="{{ @path }}/discover">Discover</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../foodie/search"><i class="fas fa-search"></i></a>
+                <a class="nav-link" href="{{ @path }}/search"><i class="fas fa-search"></i></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../foodie/contact"><i class="fas fa-question-circle"></i></a>
+                <a class="nav-link" href="{{ @path }}/contact"><i class="fas fa-question-circle"></i></a>
             </li>
         </ul>
         <!-- Links -->
