@@ -313,6 +313,7 @@ $f3->route('GET|POST /discover', function($f3){
     //form submission - set search, go to search
     if(isset($_POST['submit'])) {
         $_SESSION['search'] = $_POST['search'];
+        $_SESSION['category'] = 'all';
         $_SESSION['noSet'] = true;
         $f3->reroute('/search');
     }
