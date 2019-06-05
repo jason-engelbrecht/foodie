@@ -44,8 +44,9 @@
  INSERT INTO category(category)
  VALUES('Vegetarian');
  */
-
-require '../../../config.php';
+$user = $_SERVER['USER'];
+require "/home/$user/config.php";
+//require '../../../config.php';
 
 /**
  * Class representing a data stream

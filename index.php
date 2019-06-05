@@ -259,7 +259,7 @@ $f3->route('GET|POST /recipe/@id', function($f3, $params){
     if(isset($_POST['submit'])) {
         //search
         $_SESSION['search'] = $_POST['search'];
-        $_SESSION['noSet'] = true;
+        $_SESSION['category'] = 'all';
 
         $f3->reroute('/search');
     }
@@ -302,7 +302,6 @@ $f3->route('GET|POST /discover', function($f3){
     if(isset($_POST['submit'])) {
         $_SESSION['search'] = $_POST['search'];
         $_SESSION['category'] = 'all';
-        $_SESSION['noSet'] = true;
         $f3->reroute('/search');
     }
 
@@ -318,14 +317,6 @@ $f3->route('GET|POST /search', function($f3){
     $f3->set('cssJsPath', '');
 
     global $db;
-
-    //check if we need to set session variables
-    if(!$_SESSION['noSet']) {
-        //get search info
-        $_SESSION['category'] = $_POST['category'];
-        $_SESSION['search'] = $_POST['search'];
-    }
-    $_SESSION['noSet'] = false;
 
     //check if all or find category
     if($_SESSION['category'] == 'all') {
@@ -356,7 +347,6 @@ $f3->route('GET|POST /search/@category', function($f3, $params){
     if(isset($_POST['submit'])) {
         $_SESSION['search'] = $_POST['search'];
         $_SESSION['category'] = $_POST['category'];
-        $_SESSION['noSet'] = true;
         $f3->reroute('/search');
     }
     //from redirect
@@ -374,7 +364,23 @@ $f3->route('GET|POST /search/@category', function($f3, $params){
 
     // display a view
     $view = new Template();
-    echo $view->render('views/search.html');
+    echo $view->render('views/searchWithForm.html');
+});
+
+// Define a test route
+$f3->route('GET /test', function($f3){
+    $f3->set('page_title', 'Contact Us');
+    $f3->set('path', '../foodie');
+    $f3->set('cssJsPath', '');
+
+    global $db;
+    //search
+    $recipes = $db->searchRecipes($_SESSION['search'], $_SESSION['category']);
+    $f3->set('recipes', $recipes);
+
+    // display a view
+    $view = new Template();
+    echo $view->render('views/test.html');
 });
 
 //run fat-free
