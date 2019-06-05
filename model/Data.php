@@ -201,7 +201,7 @@ class Data
                       OR ingredients LIKE :search
                       OR instructions LIKE :search
                       OR time LIKE :search)
-                      ORDER BY date_created ASC";
+                      ORDER BY date_created DESC";
 
             //prepare statement
             $statement = $this->_db->prepare($query);
@@ -219,7 +219,7 @@ class Data
                       OR ingredients LIKE :search
                       OR instructions LIKE :search
                       OR time LIKE :search)
-                      ORDER BY date_created ASC";
+                      ORDER BY date_created DESC";
 
             //prepare statement
             $statement = $this->_db->prepare($query);

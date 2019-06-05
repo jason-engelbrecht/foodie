@@ -72,9 +72,6 @@
 
                     <!-- Part of description -->
                     <p class="font-weight-light">{{ substr(@recipe['description'] , 0, 261)}}
-                        <check if="{{ strlen(@recipe['description']) > 261 }}">
-                            ...
-                        </check>
                     </p>
 
                     <!-- Time -->

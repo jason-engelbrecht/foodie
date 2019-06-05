@@ -126,16 +126,6 @@ $f3->route('GET|POST /share', function($f3) {
         //get image file type
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
-        // Check if image file is a actual image or fake image
-        $check = getimagesize($_FILES["image"]["tmp_name"]);
-        if ($check !== false) {
-            $uploadOk = 1;
-        }
-        else {
-            $f3->set("errors['image']", "File is not an image");
-            $uploadOk = 0;
-        }
-
         // Check if file already exists
         if (file_exists($target_file)) {
             $f3->set("errors['image']", "File already exists, please select another file");
@@ -156,7 +146,7 @@ $f3->route('GET|POST /share', function($f3) {
 
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
-            $f3->set("errors['image']", "Your image was not able to be uploaded, please try again");
+            $f3->set("errors['image']", "Please submit a valid image");
         }
         // if everything is ok, try to upload file
         else {
@@ -167,8 +157,6 @@ $f3->route('GET|POST /share', function($f3) {
                 $f3->set("errors['image']", "Error. Upload failed, please try again");
             }
         }
-
-
 
         //if all required constants are defined
         if (defined('TITLE') && defined('TIME') &&
