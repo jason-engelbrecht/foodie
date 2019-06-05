@@ -271,8 +271,7 @@ $f3->route('GET|POST /recipe/@id', function($f3, $params){
     if(isset($_POST['submit'])) {
         //search
         $_SESSION['search'] = $_POST['search'];
-        $recipes = $db->searchRecipes($_SESSION['search']);
-        $f3->set('recipes', $recipes);
+        $_SESSION['noSet'] = true;
 
         $f3->reroute('/search');
     }
@@ -314,6 +313,7 @@ $f3->route('GET|POST /discover', function($f3){
     //form submission - set search, go to search
     if(isset($_POST['submit'])) {
         $_SESSION['search'] = $_POST['search'];
+        $_SESSION['noSet'] = true;
         $f3->reroute('/search');
     }
 
@@ -331,14 +331,12 @@ $f3->route('GET|POST /search', function($f3){
     global $db;
 
     //check if we need to set session variables
-    if($_SESSION['noSet']) {
-        $_SESSION['noSet'] = false;
-    }
-    else {
+    if(!$_SESSION['noSet']) {
         //get search info
         $_SESSION['category'] = $_POST['category'];
         $_SESSION['search'] = $_POST['search'];
     }
+    $_SESSION['noSet'] = false;
 
     //check if all or find category
     if($_SESSION['category'] == 'all') {
