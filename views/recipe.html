@@ -112,13 +112,13 @@
             <div class="hold-cards pb-5">
 
                 <!-- cards -->
-                <repeat group="{{ @recipes }}" value="{{ @recipe }}">
+                <repeat group="{{ @recipes }}" value="{{ @currentRecipe }}">
                     <!-- Card -->
                     <div class="card mb-5 hoverable">
                         <!-- Card image -->
                         <div class="view overlay">
-                            <img class="card-img-top" src="{{ @path }}/{{ @recipe['image'] }}" alt="Card image cap">
-                            <a href="{{ @path }}/recipe/{{ @recipe['recipe_id'] }}">
+                            <img class="card-img-top" src="{{ @path }}/{{ @currentRecipe['image'] }}" alt="Card image cap">
+                            <a href="{{ @path }}/recipe/{{ @currentRecipe['recipe_id'] }}">
                                 <div class="mask rgba-white-slight"></div>
                             </a>
                         </div>
@@ -126,11 +126,11 @@
                         <!-- Card content -->
                         <div class="card-body">
                             <!-- title -->
-                            <h4 class="card-title h4-responsive">{{ @recipe['title'] }}</h4>
+                            <h4 class="card-title h4-responsive">{{ @currentRecipe['title'] }}</h4>
 
                             <!-- description -->
-                            <p class="card-text">{{ substr(@recipe['description'], 0, 100) }}
-                                <check if="{{ strlen(@recipe['description']) > 100 }}">
+                            <p class="card-text">{{ substr(@currentRecipe['description'], 0, 100) }}
+                                <check if="{{ strlen(@currentRecipe['description']) > 100 }}">
                                     ...
                                 </check>
                             </p>
@@ -139,7 +139,7 @@
                             <p class="card-text"><i class="far fa-clock"></i> {{ @recipe['time'] }}</p>
 
                             <!-- view -->
-                            <a href="{{ @path }}/recipe/{{ @recipe['recipe_id'] }}" class="btn peach-gradient text-white"><i class="fas fa-hamburger mr-1"></i> Full recipe</a>
+                            <a href="{{ @path }}/recipe/{{ @currentRecipe['recipe_id'] }}" class="btn peach-gradient text-white"><i class="fas fa-hamburger mr-1"></i> Full recipe</a>
 
                         </div>
                     </div>

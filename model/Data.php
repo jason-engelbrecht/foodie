@@ -160,17 +160,17 @@ class Data
     {
         //define query
         $query = "SELECT * FROM recipe
-                  WHERE category = :category
-                  AND recipe_id <> :id
-                  ORDER BY date_created ASC
+                  WHERE recipe_id <> :id
+                  AND category = :category
+                  ORDER BY date_created DESC
                   LIMIT 3";
 
         //prepare statement
         $statement = $this->_db->prepare($query);
 
         //bind parameter
-        $statement->bindParam(':category', $category, PDO::PARAM_STR);
-        $statement->bindParam(':id', $id, PDO::PARAM_STR);
+        $statement->bindParam(':category', $category, PDO::PARAM_INT);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
 
         //execute
         $statement->execute();
