@@ -52,16 +52,50 @@
 
 <!-- main container -->
 <div class="container my-5 pb-5 pt-3">
-    <check if="{{ !empty(@SESSION.search) }}">
+
+    <!-- session search has content -->
+    <check if="{{ isset(@SESSION.search) && @SESSION.search != '' }}">
+        <!-- display search with category -->
         <true>
-            <h2 class="h2-responsive text-center animated tada">Here are your results for <strong class="orange-text">{{ @SESSION.search }}</strong></h2>
+            <h2 class="h2-responsive text-center resultHeading">
+                Here are your results for <strong class="orange-text">{{ @SESSION.search }}</strong> in
+                <strong class="orange-text"> {{ @SESSION.category }}</strong>
+            </h2>
         </true>
+
+        <!-- session search is empty -->
         <false>
-            <h2 class="h2-responsive text-center"></h2>
+            <!-- session category is all -->
+            <check if="{{ @SESSION.category == 'all' }}">
+                <true>
+                    <h2 class="h2-responsive text-center resultHeading">All recipes</h2>
+                </true>
+
+                <!-- session category is not all -->
+                <false>
+                    <!-- session category is empty -->
+                    <check if="{{ @SESSION.category == '' }}">
+                        <!-- nothing to display -->
+                        <true>
+                            <h2 class="h2-responsive text-center resultHeading"></h2>
+                        </true>
+
+                        <!-- all recipes in category -->
+                        <false>
+                            <h2 class="h2-responsive text-center resultHeading">
+                                Recipes in <strong class="orange-text">{{ @SESSION.category }}</strong>
+                            </h2>
+                        </false>
+                    </check>
+                    <!-- session category is empty -->
+                </false>
+            </check>
+            <!-- session category is all -->
         </false>
     </check>
-    <!-- search results -->
+    <!-- session search has content -->
 
+    <!-- search results -->
     <!-- recipe cards -->
     <div class="result">
         <repeat group="{{ @recipes }}" value="{{ @recipe }}" counter="{{ @ctr }}">
@@ -118,13 +152,34 @@
     <!-- result -->
 </div>
 <!-- main container -->
+{{ session_destroy() }}
 
 <script>
-    $('#submit').on("click", function(){
+    //if (search - key movement) or (category - change)
+    $('#search, #category').on('keyup keypress keydown change', function() {
 
+        //get values
         let category = $('#category').val();
         let search = $('#search').val();
 
+        //search is empty
+        if(search === '') {
+            //all recipes
+            if(category === 'all') {
+                $('.resultHeading').html('All recipes');
+            }
+            //all recipes in category
+            else {
+                $('.resultHeading').html('Recipes in <strong class="orange-text">' + category + '</strong>');
+            }
+        }
+        //search has contents, display with category selected
+        else {
+            $('.resultHeading').html('Here are your results for <strong class="orange-text">'
+                + search + '</strong>' + ' in ' + '<strong class="orange-text">' + category + '</strong>');
+        }
+
+        //post category and search for retrieval
         $.post("model/ajaxsearch.php", { category : category, search : search }, function(result) {
                 $('.result').html(result);
             }

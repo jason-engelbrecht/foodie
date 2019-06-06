@@ -294,7 +294,6 @@ $f3->route('GET|POST /search', function($f3){
     //search
     $recipes = $db->searchRecipes($_SESSION['search'], $category);
     $f3->set('recipes', $recipes);
-
     // display a view
     $view = new Template();
     echo $view->render('views/search.html');
