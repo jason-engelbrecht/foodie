@@ -58,7 +58,7 @@ function displayRecipe($title, $description, $time, $date, $category, $image, $i
                         <!-- Date -->
                         <h6 class="h6 pb-1">Posted on: ' .  date('F j, Y', strtotime($date)) . '</h6>
                         <!-- View recipe -->
-                        <a class="btn peach-gradient text-white" href="../foodie/recipe/' . $id . '"><i class="fas fa-hamburger mr-1"></i> Full recipe </a>
+                        <a class="ml-0 btn peach-gradient text-white" href="../foodie/recipe/' . $id . '"><i class="fas fa-hamburger mr-1"></i> Full recipe </a>
                     </div>
                     <!-- column -->
                 </div>

@@ -107,7 +107,7 @@
             </div>
 
             <!-- Related recipe cards -->
-            <h2 class="text-center pt-5 h2-responsive">Related Recipes</h2>
+            <h2 class="text-center pt-5 h2-responsive pb-2">Related Recipes</h2>
             <!-- card container -->
             <div class="hold-cards pb-5">
 
@@ -128,19 +128,17 @@
                             <!-- title -->
                             <h4 class="card-title h4-responsive">{{ @currentRecipe['title'] }}</h4>
 
-                            <!-- description -->
-                            <p class="card-text">{{ substr(@currentRecipe['description'], 0, 100) }}
-                                <check if="{{ strlen(@currentRecipe['description']) > 100 }}">
-                                    ...
-                                </check>
-                            </p>
-
                             <!-- time -->
-                            <p class="card-text"><i class="far fa-clock"></i> {{ @recipe['time'] }}</p>
+                            <p class="card-text m-responsive"><i class="far fa-clock"></i> {{ @recipe['time'] }}</p>
 
-                            <!-- view -->
-                            <a href="{{ @path }}/recipe/{{ @currentRecipe['recipe_id'] }}" class="btn peach-gradient text-white"><i class="fas fa-hamburger mr-1"></i> Full recipe</a>
-
+                            <!-- description and read more-->
+                            <p class="card-text pb-2">
+                                {{ trim(substr(@currentRecipe['description'], 0, 100)) }}...
+                                <strong>
+                                    <a class="orange-text"
+                                       href="{{ @path }}/recipe/{{ @currentRecipe['recipe_id'] }}">Read More</a>
+                                </strong>
+                            </p>
                         </div>
                     </div>
                     <!-- Card -->
