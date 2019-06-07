@@ -23,7 +23,6 @@ class StandardRecipe extends Recipe
      * @param $_description - description of recipe
      * @param $_time - time recipe takes to make
      * @param $_image - image of recipe
-     * @param $_dateCreated - date recipe was created
      * @param $_category - category of recipe
      * @return void
      */
