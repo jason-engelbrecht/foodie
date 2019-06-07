@@ -1,7 +1,7 @@
 # foodie
 foodie, recipe sharing space
 
-##Project Requirements:
+## Project Requirements:
   * Separates all database/business logic using the MVC pattern.
     - All business logic is seperated following the MVC pattern.
   * Routes all URLs and leverages a templating language using the Fat-Free framework.
