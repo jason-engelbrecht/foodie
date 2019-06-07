@@ -20,13 +20,14 @@ function validate($input)
 function validateEmail($email)
 {
     global $f3;
+    $isValid = true;
 
-    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $isValid = false;
         $f3->set("errors['email']", "Please enter a valid email");
-        return true;
-    } else {
-        return false;
     }
+    return $isValid;
+
 }
 
 /**
