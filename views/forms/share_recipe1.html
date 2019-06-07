@@ -23,7 +23,7 @@
                         <check if="{{ isset(@errors['title']) }}">
                             <em class="text-danger">{{ @errors['title'] }}</em>
                         </check>
-                        <input type="text" class="form-control hoverable" id="title"
+                        <input type="text" class="form-control hoverable" id="title" required
                                placeholder="Title" name="title" value="{{ @title }}">
                     </div>
 
@@ -33,7 +33,7 @@
                         <check if="{{ isset(@errors['time']) }}">
                             <em class="text-danger">{{ @errors['time'] }}</em>
                         </check>
-                        <input type="text" class="form-control hoverable" id="time"
+                        <input type="text" class="form-control hoverable" id="time" required
                                placeholder="1 hr 30 min" name="time" value="{{ @time }}">
                     </div>
 
@@ -79,7 +79,7 @@
                         <check if="{{ isset(@errors['description']) }}">
                             <em class="text-danger">{{ @errors['description'] }}</em>
                         </check>
-                        <textarea id="description" class="form-control hoverable" rows="8"
+                        <textarea id="description" class="form-control hoverable" rows="8" required
                                   placeholder="My recipe is incredible and this is why.."
                                   name="description">{{ @description }}</textarea>
                     </div>

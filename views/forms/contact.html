@@ -33,7 +33,7 @@
                                         <check if="{{ isset(@errors['email']) }}">
                                             <em class="text-danger">{{ @errors['email'] }}</em>
                                         </check>
-                                        <input type="text" id="email" name="email" class="form-control hoverable">
+                                        <input type="email" id="email" name="email" class="form-control hoverable" required>
                                     </div>
                                 </div>
                                 <!--Grid column-->
@@ -48,7 +48,7 @@
                                         <check if="{{ isset(@errors['subject']) }}">
                                             <em class="text-danger">{{ @errors['subject'] }}</em>
                                         </check>
-                                        <input type="text" id="subject" name="subject" class="form-control hoverable">
+                                        <input type="text" id="subject" name="subject" class="form-control hoverable" required>
                                     </div>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@
                                         <check if="{{ isset(@errors['message']) }}">
                                             <em class="text-danger">{{ @errors['message'] }}</em>
                                         </check>
-                                        <textarea type="text" id="message" name="message" rows="4" class="form-control hoverable"></textarea>
+                                        <textarea type="text" id="message" name="message" rows="4" class="form-control hoverable" required></textarea>
                                     </div>
                                 </div>
                             </div>

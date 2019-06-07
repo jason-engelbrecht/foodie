@@ -23,7 +23,7 @@
                         <check if="{{ isset(@errors['ingredients']) }}">
                             <em class="text-danger">{{ @errors['ingredients'] }}</em>
                         </check>
-                        <textarea id="ingredients" class="form-control hoverable" rows="10"
+                        <textarea id="ingredients" class="form-control hoverable" rows="10" required
                                   placeholder="1 ingredient per line" name="ingredients">{{ @ingredients }}</textarea>
                         <small>Include measurements and/or amounts</small>
                     </div>
@@ -34,7 +34,7 @@
                         <check if="{{ isset(@errors['instructions']) }}">
                             <em class="text-danger">{{ @errors['instructions'] }}</em>
                         </check>
-                        <textarea id="instructions" class="form-control hoverable" rows="10"
+                        <textarea id="instructions" class="form-control hoverable" rows="10" required
                                   placeholder="1 instruction per line" name="instructions">{{ @instructions }}</textarea>
                         <small>Avoid numbering, we'll take care of that for you</small>
                     </div>
