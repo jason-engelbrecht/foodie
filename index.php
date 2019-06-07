@@ -209,6 +209,45 @@ $f3->route('GET /contact', function($f3){
     $f3->set('path', '../foodie');
     $f3->set('cssJsPath', '');
 
+    //form submission
+    if(isset($_POST['submit'])) {
+        //get post data
+        $email = $_POST['email'];
+        $subject = $_POST['subject'];
+        $message = $_POST['message'];
+
+        //set to hive for sticky form
+        $f3->set('email', $email);
+        $f3->set('subject', $subject);
+        $f3->set('message', $message);
+
+        //validate
+        if (validateEmail(trim($email))) {
+            define('EMAIL', $email);
+        }
+        else {
+            $f3->set("errors['email']", "Please enter a valid email address.");
+        }
+
+        if (validate(trim($subject))) {
+            define('SUBJECT', $subject);
+        }
+        else {
+            $f3->set("errors['subject']", "Please enter a subject.");
+        }
+
+        if (validate($message)) {
+            define('MESSAGE', $message);
+        }
+        else {
+            $f3->set("errors['description']", "Please enter a message");
+        }
+
+    }
+    //display a view
+    $view = new Template();
+    echo $view->render('views/forms/share_recipe1.html');
+
     // display a view
     $view = new Template();
     echo $view->render('views/forms/contact.html');
