@@ -43,6 +43,16 @@
                     <p class="wow fadeIn faster">{{ @ctr }}. {{ @instruction }}</p>
                 </repeat>
             </div>
+
+            <!-- edit recipe -->
+            <div class="row justify-content-center">
+                <button type="button" id="edit" class="btn btn-link" data-toggle="modal" data-target="#basicExampleModal">Edit Recipe</button>
+            </div>
+
+
+
+
+
         </div>
         <!-- Post Content Column -->
 
@@ -152,4 +162,38 @@
     <!-- row -->
 </div>
 <!-- container -->
+
+<!-- edit modal -->
+<div class="modal fade left" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-warning modal-side modal-bottom-left" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <h3 class="heading h3-responsive">Edit Recipe</h3>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fas fa-question fa-4x mb-3 animated rotateInUpLeft"></i>
+                    <h4 class="h4-responsive">Want to edit this recipe?</h4>
+                </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+                <a type="button" class="btn btn-orange waves-effect grey" data-dismiss="modal">Nevermind</a>
+                <a type="button" class="btn btn-warning" href="../edit/{{ @recipe['recipe_id'] }}">Edit <i class="far fa-edit ml-1"></i></a>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!-- edit modal -->
 <include href="views/includes/footer.html"/>

@@ -1,0 +1,184 @@
+<include href="views/includes/header.html"/>
+<!-- purple header -->
+<div class="edge-header orange lighten-2" style="height:250px;"></div>
+
+<!-- main container -->
+<div class="container free-bird">
+    <!-- row -->
+    <div class="row">
+        <!-- container -->
+        <div class="col-md-8 col-lg-7 mx-auto float-none white z-depth-1 py-2 px-2 grey lighten-5 animated bounce">
+
+            <!-- card -->
+            <div class="card-body">
+                <h1 class="h1-responsive text-center"><strong>Edit </strong><strong class="orange-text">"{{ @recipe['title'] }}"</strong></h1>
+                <h4 class="pb-4 h4-responsive text-center">Make changes below <i class="far fa-edit ml-1"></i></h4>
+
+                <!-- form -->
+                <form action="" method="post" enctype="multipart/form-data">
+
+                    <!-- title -->
+                    <div class="form-group py-3">
+                        <h5 class="h5-responsive"><label for="title">Title</label></h5>
+                        <check if="{{ isset(@errors['title']) }}">
+                            <em class="text-danger">{{ @errors['title'] }}</em>
+                        </check>
+                        <input type="text" class="form-control hoverable" id="title" required
+                               placeholder="Title" name="title" value="{{ @recipe['title'] }}">
+                    </div>
+
+                    <!-- time -->
+                    <div class="form-group py-3">
+                        <h5 class="h5-responsive"><label for="time">Time to make</label></h5>
+                        <check if="{{ isset(@errors['time']) }}">
+                            <em class="text-danger">{{ @errors['time'] }}</em>
+                        </check>
+                        <input type="text" class="form-control hoverable" id="time" required
+                               placeholder="1 hr 30 min" name="time" value="{{ @recipe['time'] }}">
+                    </div>
+
+                    <!-- category -->
+                    <div class="form-group py-3">
+                        <h5 class="h5-responsive"><label for="category">Category</label></h5>
+                        <check if="{{ isset(@errors['category']) }}">
+                            <em class="text-danger">{{ @errors['category'] }}</em>
+                        </check>
+                        <select class="browser-default custom-select hoverable" id="category" name="category">
+                            <option selected>Select a category</option>
+                            <repeat group="{{ @categories }}" value="{{ @categoryValue }}">
+                                <option value="{{ @categoryValue }}"
+                                <check if="{{ @categoryValue == @categories[(int)@recipe['category']-1] }}">
+                                    selected="selected"
+                                </check>>
+                                {{ @categoryValue }}
+                                </option>
+                            </repeat>
+                        </select>
+                    </div>
+
+                    <!-- image -->
+                    <!--<h5 class="h5-responsive pt-3 pb-2">Want people to see how amazing it looks?</h5>
+                    <check if="{{ isset(@errors['image']) }}">
+                        <em class="text-danger">{{ @errors['image'] }}</em>
+                    </check>
+                    <div class="input-group hoverable">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-camera"></i></span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                   aria-describedby="inputGroupFileAddon01" name="image">
+                            <label class="custom-file-label" for="inputGroupFile01">Select image</label>
+                        </div>
+                    </div>
+                    <small class="pb-3">Recommended size: 1280 x 720</small>-->
+
+                    <!-- Description -->
+                    <div class="form-group pt-3 pb-3">
+                        <h5 class="h5-responsive"><label for="description">Description</label></h5>
+                        <check if="{{ isset(@errors['description']) }}">
+                            <em class="text-danger">{{ @errors['description'] }}</em>
+                        </check>
+                        <textarea id="description" class="form-control hoverable" rows="8" required
+                                  placeholder="My recipe is incredible and this is why.."
+                                  name="description">{{ @recipe['description'] }}</textarea>
+                    </div>
+
+                    <!-- measure -->
+                    <div class="py-3">
+                        <h5 class="h5-responsive">Measurements used</h5>
+                        <check if="{{ isset(@errors['measure']) }}">
+                            <em class="text-danger">{{ @errors['measure'] }}</em>
+                        </check>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" id="metric" name="measure" value="Metric"
+                            <check if="{{ @recipe['measure'] == 'Metric' }}">
+                                checked="checked"
+                            </check>>
+                            <label class="custom-control-label" for="metric">Metric</label>
+                        </div>
+
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" id="standard" name="measure" value="Standard"
+                            <check if="{{ @recipe['measure'] == 'Standard' }}">
+                                checked="checked"
+                            </check>>
+                            <label class="custom-control-label" for="standard">Standard</label>
+                        </div>
+                    </div>
+
+                    <!-- ingredients -->
+                    <div class="form-group py-3 pt-5">
+                        <h5 class="h5-responsive"><label for="ingredients">Ingredients</label></h5>
+                        <check if="{{ isset(@errors['ingredients']) }}">
+                            <em class="text-danger">{{ @errors['ingredients'] }}</em>
+                        </check>
+                        <textarea id="ingredients" class="form-control hoverable" rows="10" required
+                                  placeholder="1 ingredient per line" name="ingredients">{{ @recipe['ingredients'] }}</textarea>
+                        <small>Include measurements and/or amounts</small>
+                    </div>
+
+                    <!-- instructions -->
+                    <div class="form-group py-3">
+                        <h5 class="h5-responsive"><label for="instructions">Instructions</label></h5>
+                        <check if="{{ isset(@errors['instructions']) }}">
+                            <em class="text-danger">{{ @errors['instructions'] }}</em>
+                        </check>
+                        <textarea id="instructions" class="form-control hoverable" rows="10" required
+                                  placeholder="1 instruction per line" name="instructions">{{ @recipe['instructions'] }}</textarea>
+                        <small>Avoid numbering, we'll take care of that for you</small>
+                    </div>
+
+                    <!-- submit/back -->
+                    <div class="pt-5 text-center">
+                        <button type="button" class="btn btn-outline-orange waves-effect"
+                                data-toggle="modal" data-target="#modalConfirmDelete">
+                            <i class="far fa-trash-alt mr-1"></i> Delete
+                        </button>
+                        <form action="" method="post">
+                            <button type="submit" class="btn peach-gradient text-white"
+                                    name="save">Save <i class="far fa-save ml-1"></i></button>
+                        </form>
+                    </div>
+                </form>
+                <!-- form -->
+            </div>
+            <!--card-->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- row -->
+</div>
+<!-- main container -->
+
+<!--Modal: modalConfirmDelete-->
+<div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+        <!--Content-->
+        <div class="modal-content text-center">
+            <!--Header-->
+            <div class="modal-header d-flex justify-content-center">
+                <p class="heading">Are you sure?</p>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+
+                <i class="fas fa-times fa-4x animated rotateIn"></i>
+
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer flex-center">
+                <form action="" method="post">
+                    <button type="submit" class="btn btn-outline-danger" name="confirmDelete">Yes</button>
+                </form>
+                <a type="button" class="btn  btn-danger waves-effect" data-dismiss="modal">No</a>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!--Modal: modalConfirmDelete-->
+<include href="views/includes/footer.html"/>

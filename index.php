@@ -352,6 +352,44 @@ $f3->route('GET|POST /search/@category', function($f3, $params){
     echo $view->render('views/search.html');
 });
 
+//define an edit recipe route
+$f3->route('GET|POST /edit/@recipe', function($f3, $params){
+    $f3->set('page_title', 'Edit');
+    $f3->set('path', '..');
+    $f3->set('cssJsPath', '../');
+
+    //get recipe to edit
+    global $db;
+    $recipe_id = $params['recipe']; //must match^
+    $recipe = $db->getRecipe($recipe_id);
+    $f3->set('recipe', $recipe);
+
+    //save recipe, update
+    if(isset($_POST['save'])) {
+        //get post data
+        $title = $_POST['title'];
+        $time = $_POST['time'];
+        $category = $category_value = array_search($_POST['category'], $f3->get('categories')) + 1;
+        $description = trim($_POST['description']);
+        $measure = $_POST['measure'];
+        $ingredients = trim($_POST['ingredients']);
+        $instructions = trim($_POST['instructions']);
+
+        $db->updateRecipe($recipe_id, $title, $description, $ingredients, $instructions, $time, $measure, $category);
+        $f3->reroute("/recipe/$recipe_id");
+    }
+
+    //confirm deletion of recipe, go home
+    if(isset($_POST['confirmDelete'])) {
+        $db->deleteRecipe($recipe_id);
+        $f3->reroute("/");
+    }
+
+    // display a view
+    $view = new Template();
+    echo $view->render('views/forms/edit.html');
+});
+
 // Define a test route
 $f3->route('GET /test', function($f3){
     $f3->set('page_title', 'Contact Us');

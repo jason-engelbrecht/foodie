@@ -95,7 +95,7 @@ class Data
      * @param $measure string - Measurements of recipe
      * @param $image string - Image of recipe
      * @param $category string - Category of recipe
-     * @return mixed - query success or failure
+     * @return void
      */
     function insertRecipe($title, $description, $ingredients, $instructions,
                           $time, $measure, $image, $category)
@@ -120,6 +120,73 @@ class Data
         $statement->bindParam(':measure', $measure, PDO::PARAM_STR);
         $statement->bindParam(':image', $image, PDO::PARAM_STR);
         $statement->bindParam(':category', $category, PDO::PARAM_STR);
+
+        //execute statement
+        $statement->execute();
+    }
+
+    /**
+     * Updates a recipe
+     *
+     * @param $recipe_id - ID of recipe to update
+     * @param $title string - Title of recipe
+     * @param $description string - Description of recipe
+     * @param $ingredients string - Ingredients of recipe
+     * @param $instructions string - Instructions of recipe
+     * @param $time string - Time to make recipe
+     * @param $measure string - Measurements of recipe
+     * @param $category string - Category of recipe
+     * @return void
+     */
+    function updateRecipe($recipe_id, $title, $description, $ingredients, $instructions,
+                          $time, $measure, $category)
+    {
+        //define query
+        $query = 'UPDATE recipe 
+                  SET title = :title,
+                  description = :description,
+                  ingredients = :ingredients,
+                  instructions = :instructions,
+                  time = :time,
+                  measure = :measure,
+                  category = :category
+                  WHERE recipe_id = :id';
+
+        //prepare statement
+        $statement = $this->_db->prepare($query);
+
+        //bind parameters
+        $statement->bindParam(':id', $recipe_id, PDO::PARAM_STR);
+        $statement->bindParam(':title', $title, PDO::PARAM_STR);
+        $statement->bindParam(':description', $description, PDO::PARAM_STR);
+        $statement->bindParam(':ingredients', $ingredients, PDO::PARAM_STR);
+        $statement->bindParam(':instructions', $instructions, PDO::PARAM_STR);
+        $statement->bindParam(':time', $time, PDO::PARAM_STR);
+        $statement->bindParam(':measure', $measure, PDO::PARAM_STR);
+        $statement->bindParam(':category', $category, PDO::PARAM_STR);
+
+        //execute statement
+        $statement->execute();
+    }
+
+    /**
+     * Deletes a recipe with the id
+     *
+     * @param $recipe_id string - id of recipe to delete
+     * @return void
+     */
+    function deleteRecipe($recipe_id)
+    {
+        //define query
+        $query = 'DELETE FROM recipe
+                  WHERE recipe_id = :id
+                  LIMIT 1';
+
+        //prepare statement
+        $statement = $this->_db->prepare($query);
+
+        //bind parameter
+        $statement->bindParam(':id', $recipe_id, PDO::PARAM_STR);
 
         //execute statement
         $statement->execute();
