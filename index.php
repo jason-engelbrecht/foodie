@@ -243,12 +243,32 @@ $f3->route('GET /contact', function($f3){
             $f3->set("errors['description']", "Please enter a message");
         }
 
+
+
+        if (defined('EMAIL') && defined('SUBJECT') &&
+            defined('MESSAGE')){
+
+
+            $f3->reroute('/confirmation'); //next form
+        }
+
     }
 
     // display a view
     $view = new Template();
     echo $view->render('views/forms/contact.html');
 });
+
+
+//Define a route that displays confirmation page from contact page
+$f3->route('GET /confirmation', function($f3){
+
+    // display a view
+    $view = new Template();
+    echo $view->render('views/forms/confirmation.html');
+});
+
+
 
 //Define a route that displays student detail
 $f3->route('GET|POST /recipe/@id', function($f3, $params){
