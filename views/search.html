@@ -51,16 +51,26 @@
 <!-- main container -->
 
 <!-- main container -->
-<div class="container my-5 pb-5 pt-3">
+<div class="container my-5 pb-5 pt-3 result">
 
     <!-- session search has content -->
     <check if="{{ isset(@SESSION.search) && @SESSION.search != '' }}">
         <!-- display search with category -->
         <true>
-            <h2 class="h2-responsive text-center resultHeading">
-                Here are your results for <strong class="orange-text">{{ @SESSION.search }}</strong> in
-                <strong class="orange-text"> {{ @SESSION.category }}</strong>
-            </h2>
+            <check if="{{ count(@recipes) == 0 }}">
+                <true>
+                    <h2 class="h2-responsive text-center resultHeading">
+                        No results for <strong class="orange-text">{{ @SESSION.search }}</strong> in
+                        <strong class="orange-text"> {{ @SESSION.category }}</strong>
+                    </h2>
+                </true>
+                <false>
+                    <h2 class="h2-responsive text-center resultHeading">
+                        Here are your results for <strong class="orange-text">{{ @SESSION.search }}</strong> in
+                        <strong class="orange-text"> {{ @SESSION.category }}</strong>
+                    </h2>
+                </false>
+            </check>
         </true>
 
         <!-- session search is empty -->
@@ -97,7 +107,7 @@
 
     <!-- search results -->
     <!-- recipe cards -->
-    <div class="result">
+    <div>
         <repeat group="{{ @recipes }}" value="{{ @recipe }}" counter="{{ @ctr }}">
             <!-- container -->
             <div class="container pt-5">
@@ -156,28 +166,11 @@
 
 <script>
     //if (search - key movement) or (category - change)
-    $('#search, #category').on('keyup keypress keydown change', function() {
+    $('#search, #category').on('keyup change', function() {
 
         //get values
         let category = $('#category').val();
         let search = $('#search').val();
-
-        //search is empty
-        if(search === '') {
-            //all recipes
-            if(category === 'all') {
-                $('.resultHeading').html('All recipes');
-            }
-            //all recipes in category
-            else {
-                $('.resultHeading').html('Recipes in <strong class="orange-text">' + category + '</strong>');
-            }
-        }
-        //search has contents, display with category selected
-        else {
-            $('.resultHeading').html('Here are your results for <strong class="orange-text">'
-                + search + '</strong>' + ' in ' + '<strong class="orange-text">' + category + '</strong>');
-        }
 
         //post category and search for retrieval
         $.post("model/ajaxsearch.php", { category : category, search : search }, function(result) {

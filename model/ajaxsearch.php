@@ -18,7 +18,7 @@ $categories = array('Breakfast', 'Lunch', 'Dinner',
 //display recipe function
 function displayRecipe($title, $description, $time, $date, $category, $image, $id) {
     echo
-    '<div class="result">
+    '<div>
         <!-- container -->
         <div class="container pt-5">
             
@@ -75,11 +75,41 @@ $search = $_POST['search'];
 
 //check category is all or need to retrieve
 if($category != 'all') {
-    $category = array_search($category, $categories) + 1;
+    $category_value = array_search($category, $categories) + 1;
+}
+else {
+    $category_value = 'all';
 }
 
 //search
-$recipes = $db->searchRecipes($search, $category);
+$recipes = $db->searchRecipes($search, $category_value);
+
+//no results
+if(count($recipes) == 0) {
+    echo '<h2 class="h2-responsive text-center resultHeading animated hinge delay-3s">
+    No results for <strong class="orange-text">' . $search . '</strong>' .
+        ' in ' . '<strong class="orange-text">' . $category . '</strong></h2>';
+}
+//results
+else {
+    //empty search
+    if($search == '') {
+        //all recipes
+        if($category == 'all') {
+            echo '<h2 class="h2-responsive text-center resultHeading">All recipes</h2>';
+        }
+        //recipes in category
+        else {
+            echo '<h2 class="h2-responsive text-center resultHeading">
+            Recipes in <strong class="orange-text">' . $category . '</strong></h2>';
+        }
+    }
+    //search and category
+    else {
+        echo '<h2 class="h2-responsive text-center resultHeading">Here are your results for <strong class="orange-text">'
+            . $search . '</strong>' . ' in ' . '<strong class="orange-text">' . $category . '</strong></h2>';
+    }
+}
 
 //display all recipes
 foreach ($recipes as $recipe) {
