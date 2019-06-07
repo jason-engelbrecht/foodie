@@ -19,7 +19,10 @@ function validate($input)
 
 function validateEmail($email)
 {
+    global $f3;
+
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $f3->set("errors['email']", "Please enter a valid email");
         return true;
     } else {
         return false;
