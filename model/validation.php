@@ -17,6 +17,15 @@ function validate($input)
     return !empty($input);
 }
 
+function validateEmail($email)
+{
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 /**
  * Validate image upload
  *
