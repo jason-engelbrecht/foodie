@@ -9,7 +9,7 @@
         <!-- container -->
         <div class="col-md-12 col-lg-10 col-sm-12 mx-auto float-none white z-depth-1 grey lighten-5 p-5 animated pulse">
 
-            <form class="mb-4">
+            <form class="mb-4" action="" method="post">
 
                 <!--Section heading-->
                 <h1 class="h1-responsive text-center pt-2"><strong>Questions?</strong></h1>
@@ -30,6 +30,9 @@
                                 <div class="col">
                                     <div class="mb-4">
                                         <label for="email" class="">Your email</label>
+                                        <check if="{{ isset(@errors['email']) }}">
+                                            <em class="text-danger">{{ @errors['email'] }}</em>
+                                        </check>
                                         <input type="text" id="email" name="email" class="form-control hoverable">
                                     </div>
                                 </div>
@@ -42,6 +45,9 @@
                                 <div class="col-md-12">
                                     <div class="mb-4">
                                         <label for="subject" class="">Subject</label>
+                                        <check if="{{ isset(@errors['subject']) }}">
+                                            <em class="text-danger">{{ @errors['subject'] }}</em>
+                                        </check>
                                         <input type="text" id="subject" name="subject" class="form-control hoverable">
                                     </div>
                                 </div>
@@ -54,6 +60,9 @@
                                 <div class="col-md-12">
                                     <div class="mb-4">
                                         <label for="message">Your message</label>
+                                        <check if="{{ isset(@errors['message']) }}">
+                                            <em class="text-danger">{{ @errors['message'] }}</em>
+                                        </check>
                                         <textarea type="text" id="message" name="message" rows="4" class="form-control hoverable"></textarea>
                                     </div>
                                 </div>
@@ -62,7 +71,7 @@
                         </form>
 
                         <div class="text-center text-md-left">
-                            <a class="btn peach-gradient mb-3 text-white" href="">Send</a>
+                            <button class="btn peach-gradient mb-3 text-white" type="submit" name="submit">Send</button>
                         </div>
                         <div class="status"></div>
                     </div>

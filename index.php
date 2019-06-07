@@ -204,7 +204,7 @@ $f3->route('GET|POST /post', function($f3) {
 });
 
 // Define a contact us route
-$f3->route('GET /contact', function($f3){
+$f3->route('GET|POST /contact', function($f3){
     $f3->set('page_title', 'Contact Us');
     $f3->set('path', '../foodie');
     $f3->set('cssJsPath', '');
@@ -240,18 +240,13 @@ $f3->route('GET /contact', function($f3){
             define('MESSAGE', $message);
         }
         else {
-            $f3->set("errors['description']", "Please enter a message");
+            $f3->set("errors['message']", "Please enter a message");
         }
-
-
 
         if (defined('EMAIL') && defined('SUBJECT') &&
             defined('MESSAGE')){
-
-
             $f3->reroute('/confirmation'); //next form
         }
-
     }
 
     // display a view
@@ -262,6 +257,9 @@ $f3->route('GET /contact', function($f3){
 
 //Define a route that displays confirmation page from contact page
 $f3->route('GET /confirmation', function($f3){
+    $f3->set('page_title', 'Message Sent');
+    $f3->set('path', '../foodie');
+    $f3->set('cssJsPath', '');
 
     // display a view
     $view = new Template();
