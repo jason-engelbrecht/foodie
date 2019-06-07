@@ -1,0 +1,28 @@
+<include href="views/includes/header.html"/>
+<!-- purple header -->
+<div class="edge-header orange lighten-2" style="height:250px;"></div>
+
+<!-- main container -->
+<div class="container free-bird">
+    <!-- row -->
+    <div class="row">
+        <!-- container -->
+        <div class="col-md-8 col-lg-7 mx-auto float-none white z-depth-1 py-2 px-2 grey lighten-5 animated tada">
+
+            <!-- card -->
+            <div class="card-body text-center py-5">
+                <h1 class="h1-responsive">Your recipe has been shared!</h1>
+                <h4 class="h4-responsive">Thank you for sharing a recipe with us and for others to enjoy.</h4>
+                <hr class="my-4">
+                <h5 class="h5-responsive pb-3">Check out your recipe using the button below</h5>
+                <a class="btn peach-gradient text-white" href="../foodie/recipe/{{ @SESSION.id }}">My recipe <i class="fas fa-external-link-alt ml-1"></i></a>
+            </div>
+
+        </div>
+        <!-- container -->
+    </div>
+    <!-- row -->
+</div>
+<!-- main container -->
+{{ session_destroy() }}
+<include href="views/includes/footer.html"/>

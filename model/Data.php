@@ -95,7 +95,7 @@ class Data
      * @param $measure string - Measurements of recipe
      * @param $image string - Image of recipe
      * @param $category string - Category of recipe
-     * @return void
+     * @return int - last insert id
      */
     function insertRecipe($title, $description, $ingredients, $instructions,
                           $time, $measure, $image, $category)
@@ -123,6 +123,8 @@ class Data
 
         //execute statement
         $statement->execute();
+
+        return $this->_db->lastInsertId();
     }
 
     /**

@@ -190,17 +190,28 @@ $f3->route('GET|POST /post', function($f3) {
             $category_value = array_search($recipe->getCategory(), $f3->get('categories')) + 1;
 
             //insert recipe into database
-            $db->insertRecipe($recipe->getTitle(), $recipe->getDescription(),
+
+            $_SESSION['id'] = $db->insertRecipe($recipe->getTitle(), $recipe->getDescription(),
                 $recipe->getIngredients(), $recipe->getInstructions(), $recipe->getTime(),
                 $recipe->getMeasure(), $recipe->getImage(), $category_value);
 
-            session_destroy();
-            $f3->reroute('/'); //view recipe
+            $f3->reroute('/shared'); //view recipe
         }
     }
     //display a view
     $view = new Template();
     echo $view->render('views/forms/share_recipe2.html');
+});
+
+//Define a route that displays confirmation page from contact page
+$f3->route('GET /shared', function($f3){
+    $f3->set('page_title', 'Recipe Shared');
+    $f3->set('path', '../foodie');
+    $f3->set('cssJsPath', '');
+
+    // display a view
+    $view = new Template();
+    echo $view->render('views/forms/share_confirmation.html');
 });
 
 // Define a contact us route
@@ -245,7 +256,7 @@ $f3->route('GET|POST /contact', function($f3){
 
         if (defined('EMAIL') && defined('SUBJECT') &&
             defined('MESSAGE')){
-            $f3->reroute('/confirmation'); //next form
+            $f3->reroute('/sent'); //next form
         }
     }
 
@@ -256,17 +267,15 @@ $f3->route('GET|POST /contact', function($f3){
 
 
 //Define a route that displays confirmation page from contact page
-$f3->route('GET /confirmation', function($f3){
+$f3->route('GET /sent', function($f3){
     $f3->set('page_title', 'Message Sent');
     $f3->set('path', '../foodie');
     $f3->set('cssJsPath', '');
 
     // display a view
     $view = new Template();
-    echo $view->render('views/forms/confirmation.html');
+    echo $view->render('views/forms/contact_confirmation.html');
 });
-
-
 
 //Define a route that displays student detail
 $f3->route('GET|POST /recipe/@id', function($f3, $params){
@@ -345,9 +354,11 @@ $f3->route('GET|POST /search', function($f3){
         $category = array_search($_SESSION['category'], $f3->get('categories')) + 1;
     }
 
-    //search
-    $recipes = $db->searchRecipes($_SESSION['search'], $category);
-    $f3->set('recipes', $recipes);
+    //search if needed
+    if(isset($_SESSION['category'])) {
+        $recipes = $db->searchRecipes($_SESSION['search'], $category);
+        $f3->set('recipes', $recipes);
+    }
     // display a view
     $view = new Template();
     echo $view->render('views/search.html');
