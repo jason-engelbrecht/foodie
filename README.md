@@ -1,5 +1,6 @@
 # foodie
 foodie, recipe sharing space
+https://jengelbrecht.greenriverdev.com/it328/foodie/
 
 ## Project Requirements:
   * Separates all database/business logic using the MVC pattern.
